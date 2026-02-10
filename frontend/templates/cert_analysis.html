@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>证书分析 - 证书安全分析系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/cert_analysis.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                The Unseen Guardian of Your Digital Footprint
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">
+                            <i class="fas fa-home me-1"></i>返回主页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('system_intro') }}">
+                            <i class="fas fa-info-circle me-1"></i>系统介绍
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('cert_analysis') }}">
+                            <i class="fas fa-file-certificate me-1"></i>证书分析
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('security_analysis') }}">
+                            <i class="fas fa-lock me-1"></i>安全分析
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页头 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>证书分析中心</h1>
+            <p class="lead">专业的数字证书分析平台，提供全面的证书安全评估与智能报告生成</p>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <section class="content-section">
+        <div class="container">
+            <!-- 功能概述 -->
+            <div class="row mb-5">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title">分析功能</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card feature-card p-4">
+                                <div class="icon-wrapper">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h4>PCAP抓包分析</h4>
+                                <p>从网络抓包文件中提取和分析TLS/SSL证书，支持多种抓包格式。</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card feature-card p-4">
+                                <div class="icon-wrapper">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                                <h4>批量证书分析</h4>
+                                <p>批量处理多个证书文件，提供全面的证书链完整性验证。</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card feature-card p-4">
+                                <div class="icon-wrapper">
+                                    <i class="fas fa-file-archive"></i>
+                                </div>
+                                <h4>压缩包分析</h4>
+                                <p>支持从ZIP、RAR、7z等压缩包中提取并分析证书文件。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分析工具区域 -->
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title">开始分析</h2>
+                    <div class="card feature-card">
+                        <!-- 标签栏 -->
+                        <div class="tab-header">
+                            <button class="tab-btn active" data-tab="pcap">PCAP抓包分析</button>
+                            <button class="tab-btn" data-tab="batch">批量证书分析</button>
+                            <button class="tab-btn" data-tab="zip">证书压缩包分析</button>
+                        </div>
+                        
+                        <div class="card-body p-4">
+                            <!-- PCAP上传 -->
+                            <div id="pcap-tab" class="tab-content active">
+                                <div class="upload-area">
+                                    <h3 class="upload-title">上传PCAP文件</h3>
+                                    <p class="upload-subtitle">支持格式: .pcap, .pcapng</p>
+                                    
+                                    <div class="file-input-wrapper">
+                                        <input type="file" id="pcap-file" accept=".pcap,.pcapng" class="form-control file-input">
+                                    </div>
+                                    <div id="pcap-file-info" class="file-info"></div>
+                                    
+                                    <div id="pcap-progress" class="progress-container" style="display:none">
+                                        <p>正在解析PCAP文件，请稍候...</p>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-elegant" onclick="uploadPcap()">
+                                        <i class="fas fa-play"></i> 分析抓包
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 批量证书上传 -->
+                            <div id="batch-tab" class="tab-content">
+                                <div class="upload-area">
+                                    <h3 class="upload-title">批量上传证书文件</h3>
+                                    <p class="upload-subtitle">支持格式: .cer, .crt, .pem, .der</p>
+                                    
+                                    <div class="file-input-wrapper">
+                                        <input type="file" id="batch-files" accept=".cer,.crt,.pem,.der" multiple class="form-control file-input">
+                                    </div>
+                                    
+                                    <div class="batch-upload-area">
+                                        <div id="batch-preview" class="batch-preview"></div>
+                                        <button class="btn btn-elegant" onclick="uploadBatch()">
+                                            <i class="fas fa-play"></i> 批量分析
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 证书压缩包上传 -->
+                            <div id="zip-tab" class="tab-content">
+                                <div class="upload-area">
+                                    <h3 class="upload-title">上传证书压缩包</h3>
+                                    <p class="upload-subtitle">支持格式: .zip, .rar, .7z</p>
+                                    
+                                    <div class="file-input-wrapper">
+                                        <input type="file" id="zip-file" accept=".zip,.rar,.7z" class="form-control file-input">
+                                    </div>
+                                    <div id="zip-file-info" class="file-info"></div>
+                                    
+                                    <div id="zip-progress" class="progress-container" style="display:none">
+                                        <p>正在解压并分析文件，请稍候...</p>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-elegant" onclick="uploadZip()">
+                                        <i class="fas fa-play"></i> 分析压缩包
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 错误信息容器 -->
+            <div class="row mt-4">
+                <div class="col-lg-10 mx-auto">
+                    <div id="errorContainer" class="error" style="display: none;"></div>
+                </div>
+            </div>
+            
+            <!-- 加载状态 -->
+            <div class="row mt-4">
+                <div class="col-lg-10 mx-auto">
+                    <div id="loading" class="text-center py-4" style="display: none;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">分析中...</span>
+                        </div>
+                        <p class="mt-2">正在分析数据，请稍候...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分析结果区域 -->
+            <div class="row mt-5">
+                <div class="col-lg-12 mx-auto">
+                    <h2 class="section-title">分析结果</h2>
+                    <div class="card feature-card p-4">
+                        <div id="results" class="result-section" style="display: none;">
+                            <!-- PCAP特定信息 -->
+                            <div id="pcap-specific-info" style="display: none;">
+                                <h3 class="result-title">PCAP抓包分析结果</h3>
+                                <div class="pcap-stats" id="pcap-stats"></div>
+                            </div>
+                            
+                            <!-- 基本信息 -->
+                            <div class="cert-info mb-4">
+                                <h4>基本信息</h4>
+                                <div id="basicInfo"></div>
+                            </div>
+                            
+                            <!-- 统计卡片 -->
+                            <div class="stats-grid" id="statsGrid">
+                                <div class="stat-card">
+                                    <h5>证书状态统计</h5>
+                                    <div id="validityStats"></div>
+                                </div>
+                                <div class="stat-card">
+                                    <h5>密码学强度</h5>
+                                    <div id="cryptoStats"></div>
+                                </div>
+                                <div class="stat-card">
+                                    <h5>SAN特性分析</h5>
+                                    <div id="sanStats"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- 可视化分析 -->
+                            <h4 class="mt-5 mb-3">可视化分析</h4>
+                            
+                            <div class="charts-grid">
+                                <div class="chart-container">
+                                    <h5 class="chart-title">证书有效期分布</h5>
+                                    <canvas id="validityChart"></canvas>
+                                </div>
+                                
+                                <div class="chart-container">
+                                    <h5 class="chart-title">颁发机构分布</h5>
+                                    <canvas id="issuerChart"></canvas>
+                                </div>
+                                
+                                <div class="chart-container">
+                                    <h5 class="chart-title">密码学强度分布</h5>
+                                    <canvas id="cryptoChart"></canvas>
+                                </div>
+                                
+                                <div class="chart-container">
+                                    <h5 class="chart-title">SAN域名数量分布</h5>
+                                    <canvas id="sanChart"></canvas>
+                                </div>
+
+                                <div class="chart-container">
+                                    <h5 class="chart-title">密钥用途分布</h5>
+                                    <canvas id="keyUsageChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <!-- 详细数据 -->
+                            <h4 class="mt-5 mb-3">详细数据</h4>
+                            <div id="detailedResults"></div>
+
+                            <!-- 智能分析报告 -->
+                            <div class="mt-5 p-4 bg-light rounded">
+                                <h4>智能分析报告</h4>
+                                <button class="btn btn-elegant" onclick="generateReport()" id="generateReportBtn">
+                                    <i class="fas fa-file-alt"></i> 生成智能分析报告
+                                </button>
+                                <div id="reportSection" style="display: none; margin-top: 20px;">
+                                    <div id="reportContent" class="bg-white p-4 rounded border"></div>
+                                    <div class="mt-3">
+                                        <button class="btn btn-elegant me-2" onclick="downloadReport()">
+                                            <i class="fas fa-download"></i> 下载报告
+                                        </button>
+                                        <button class="btn btn-elegant" onclick="copyReport()">
+                                            <i class="fas fa-copy"></i> 复制报告
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>&copy; 2025证书安全分析系统</h5>
+                    <p>专业的数字证书安全分析平台</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>证书安全分析系统. 保留所有权利.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- 自定义JavaScript -->
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cert_analysis.js') }}"></script>
+
+</body>
+</html>    
+
+       

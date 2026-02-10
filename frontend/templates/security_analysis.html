@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全分析 - 证书安全分析系统</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/all.min.css" rel="stylesheet">
+    <!-- 自定义CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/security.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+               The Unseen Guardian of Your Digital Footprint
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">
+                            <i class="fas fa-home me-1"></i>返回主页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('system_intro') }}">
+                            <i class="fas fa-info-circle me-1"></i>系统介绍
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('cert_analysis') }}">
+                            <i class="fas fa-file-certificate me-1"></i>证书分析
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('security_analysis') }}">
+                            <i class="fas fa-lock me-1"></i>安全分析
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页头 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>证书安全分析中心</h1>
+            <p class="lead">专业的证书安全检测平台，提供全面的安全配置评估与风险防护</p>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <div class="container py-4">
+        <!-- 快速开始指南区域 -->
+        <div class="row mb-4" id="quickStartGuide">
+            <div class="col-12">
+                <div class="card quick-start-section">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-rocket me-2"></i>快速开始指南
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- 卡片1: 分析目标 -->
+                            <div class="col-md-4 mb-3">
+                                <div class="card quick-start-card h-100">
+                                    <div class="card-body">
+                                        <div class="text-center mb-3">
+                                            <div class="text-primary">
+                                                <i class="fas fa-bullseye fa-3x"></i>
+                                            </div>
+                                            <h5 class="mt-2">分析目标</h5>
+                                            <p class="text-muted mb-3">全面评估网站安全配置</p>
+                                        </div>
+                                        <div class="small">
+                                            <p class="fw-bold mb-2">我们专注于四大核心安全指标：</p>
+                                            <div class="mb-2">
+                                                <i class="fas fa-check text-success me-1"></i>
+                                                <span class="fw-bold">HTTPS强制重定向</span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 检查HTTP到HTTPS自动跳转</small><br>
+                                                    <small>• 验证301/302重定向配置</small>
+                                                </div>
+                                            </div>
+                                            <div class="mb-2">
+                                                <i class="fas fa-check text-success me-1"></i>
+                                                <span class="fw-bold">HSTS保护</span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 检测强制安全传输头</small><br>
+                                                    <small>• 验证max-age和策略配置</small>
+                                                </div>
+                                            </div>
+                                            <div class="mb-2">
+                                                <i class="fas fa-check text-success me-1"></i>
+                                                <span class="fw-bold">安全头配置</span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 分析CSP、X-Frame-Options等</small><br>
+                                                    <small>• 评估关键安全响应头</small>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <i class="fas fa-check text-success me-1"></i>
+                                                <span class="fw-bold">证书链完整性</span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 验证证书链有效性</small><br>
+                                                    <small>• 检查签名关系和有效期</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 卡片2: 评估标准 -->
+                            <div class="col-md-4 mb-3">
+                                <div class="card quick-start-card h-100">
+                                    <div class="card-body">
+                                        <div class="text-center mb-3">
+                                            <div class="text-warning">
+                                                <i class="fas fa-chart-line fa-3x"></i>
+                                            </div>
+                                            <h5 class="mt-2">评估标准</h5>
+                                            <p class="text-muted mb-3">100分制专业评分体系</p>
+                                        </div>
+                                        <div class="small">
+                                            <div class="mb-2">
+                                                <span class="fw-bold">HTTPS强制 <span class="text-primary">(30分)</span></span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 已启用：30分</small><br>
+                                                    <small>• 未启用：0分</small>
+                                                </div>
+                                            </div>
+                                            <div class="mb-2">
+                                                <span class="fw-bold">HSTS保护 <span class="text-warning">(30分)</span></span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 长期配置(≥1年)：30分</small><br>
+                                                    <small>• 短期配置：20分</small><br>
+                                                    <small>• 未启用：0分</small>
+                                                </div>
+                                            </div>
+                                            <div class="mb-2">
+                                                <span class="fw-bold">安全头配置 <span class="text-info">(25分)</span></span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• CSP头：10分</small><br>
+                                                    <small>• X-Content-Type-Options：5分</small><br>
+                                                    <small>• X-Frame-Options：5分</small><br>
+                                                    <small>• Referrer-Policy：5分</small>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="fw-bold">证书链完整性 <span class="text-success">(15分)</span></span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 完整有效：15分</small><br>
+                                                    <small>• 存在问题：0分</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 卡片3: 使用指引 -->
+                            <div class="col-md-4 mb-3">
+                                <div class="card quick-start-card h-100">
+                                    <div class="card-body">
+                                        <div class="text-center mb-3">
+                                            <div class="text-success">
+                                                <i class="fas fa-rocket fa-3x"></i>
+                                            </div>
+                                            <h5 class="mt-2">使用指引</h5>
+                                            <p class="text-muted mb-3">选择适合的分析方式</p>
+                                        </div>
+                                        <div class="small">
+                                            <div class="mb-3">
+                                                <span class="fw-bold"> PCAP文件分析</span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 上传网络抓包文件</small><br>
+                                                    <small>• 自动提取访问域名</small><br>
+                                                    <small>• 批量安全评估</small>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="fw-bold"> 证书文件分析</span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 上传.der证书文件</small><br>
+                                                    <small>• 或证书压缩包(.zip/.rar/.7z)</small><br>
+                                                    <small>• 分析证书保护的所有域名</small>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="fw-bold">结果解读</span>
+                                                <div class="ps-3 text-muted">
+                                                    <small>• 90-100分：优秀</small><br>
+                                                    <small>• 70-89分：良好</small><br>
+                                                    <small>• 50-69分：一般</small><br>
+                                                    <small>• 0-49分：需改进</small>
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <small class="text-muted">每次最多分析20个域名</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 功能模块卡片 -->
+        <div class="row mb-4" id="functionCards">
+            <div class="col-12">
+                <div class="text-center mb-4">
+                    <h3>选择分析功能</h3>
+                    <p class="text-muted">根据您的需求选择合适的分析功能</p>
+                </div>
+                
+                <div class="row justify-content-center">
+                    <!-- 安全分析卡片 -->
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="card function-card" data-function="securityAnalysis">
+                            <div class="card-body text-center p-4">
+                                <div class="mb-3">
+                                    <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                                </div>
+                                <h5>安全分析</h5>
+                                <p class="text-muted small">上传PCAP或证书文件进行安全分析</p>
+                                <div class="function-badge">
+                                    <span class="badge bg-primary">推荐</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 域名分析卡片 -->
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="card function-card" data-function="domainAnalysis">
+                            <div class="card-body text-center p-4">
+                                <div class="mb-3">
+                                    <i class="fas fa-globe fa-3x text-accent-malachite"></i>
+                                </div>
+                                <h5>域名分析</h5>
+                                <p class="text-muted small">输入域名进行安全配置分析</p>
+                                <div class="function-badge">
+                                    <span class="badge bg-accent-malachite">新增</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 常见问题卡片 -->
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="card function-card" data-function="faq">
+                            <div class="card-body text-center p-4">
+                                <div class="mb-3">
+                                    <i class="fas fa-question-circle fa-3x text-accent-cyan"></i>
+                                </div>
+                                <h5>常见问题</h5>
+                                <p class="text-muted small">查看使用指南和问题解答</p>
+                                <div class="function-badge">
+                                    <span class="badge bg-accent-cyan">帮助</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 动态内容展示区 - 初始隐藏 -->
+        <div class="row mb-4" id="dynamicContentArea" style="display: none;">
+            <div class="col-12">
+                <div class="dynamic-content-container">
+                    <!-- 更新按钮 -->
+                    <div class="text-end mb-3">
+                        <button class="btn btn-primary" id="refreshBtn">
+                            <i class="fas fa-sync-alt me-2"></i>更新
+                        </button>
+                    </div>
+                    
+                    <!-- 内容区域 -->
+                    <div id="contentArea">
+                        <!-- 内容将根据功能卡片点击动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 - 使用深主色调背景和白色文字 -->
+    <footer style="
+        background-color: #383A7A !important;
+        color: #FFFFFF !important;
+        padding: 30px 0 !important;
+        margin-top: 60px !important;
+        border-top: none !important;
+    ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 style="color: #FFFFFF !important; font-weight: 600 !important;">
+                        &copy; 2025证书安全分析系统
+                    </h5>
+                    <p style="color: rgba(255, 255, 255, 0.85) !important; margin-bottom: 0 !important;">
+                        专业的数字证书安全分析平台
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p style="color: rgba(255, 255, 255, 0.85) !important; margin-bottom: 0 !important;">
+                        证书安全分析系统. 保留所有权利.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 脚本文件 -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/all.min.js"></script>
+    <script src="../static/js/marked.min.js"></script>
+    <script src="../static/js/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/security.js') }}"></script>
+    
+    <!-- 页面交互脚本 -->
+    <script>
+    // 全局变量，用于存储当前选中的功能
+    let currentFunction = null;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('页面加载完成，开始初始化...');
+        
+        // 初始化功能卡片交互
+        initializeFunctionCards();
+        
+        // 初始化更新按钮
+        initializeRefreshButton();
+        
+        // 隐藏AI报告生成区域
+        const aiReportSection = document.querySelector('#reportGeneration');
+        if (aiReportSection) {
+            aiReportSection.style.display = 'none';
+        }
+        
+        console.log('页面初始化完成');
+    });
+    
+    /**
+     * 初始化功能卡片交互
+     */
+    function initializeFunctionCards() {
+        const functionCards = document.querySelectorAll('.function-card');
+        const dynamicContentArea = document.getElementById('dynamicContentArea');
+        
+        console.log('找到功能卡片数量:', functionCards.length);
+        
+        functionCards.forEach(card => {
+            card.addEventListener('click', function() {
+                console.log('点击功能卡片:', this.getAttribute('data-function'));
+                
+                // 移除所有卡片的激活状态
+                functionCards.forEach(c => {
+                    c.classList.remove('active');
+                });
+                
+                // 添加当前卡片的激活状态
+                this.classList.add('active');
+                
+                // 显示动态内容区域
+                dynamicContentArea.style.display = 'block';
+                
+                // 获取功能类型
+                currentFunction = this.getAttribute('data-function');
+                
+                // 根据功能类型加载内容
+                loadDynamicContent(currentFunction);
+                
+                // 滚动到动态内容区域
+                setTimeout(() => {
+                    dynamicContentArea.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 100);
+            });
+        });
+    }
+    
+    /**
+     * 加载动态内容
+     */
+    function loadDynamicContent(functionType) {
+        const contentArea = document.getElementById('contentArea');
+        
+        console.log('加载动态内容:', functionType);
+        
+        switch(functionType) {
+            case 'securityAnalysis':
+                loadSecurityAnalysisContent(contentArea);
+                break;
+            case 'domainAnalysis':
+                loadDomainAnalysisContent(contentArea);
+                break;
+            case 'faq':
+                loadFAQContent(contentArea);
+                break;
+            default:
+                contentArea.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+                        <h4>功能暂未实现</h4>
+                        <p class="text-muted">该功能正在开发中</p>
+                    </div>
+                `;
+        }
+    }
+    
+    /**
+     * 加载安全分析内容 - 完全重写，确保显示PCAP和证书文件分析选项
+     */
+    function loadSecurityAnalysisContent(container) {
+        console.log('加载安全分析内容');
+        
+        // 使用原有的文件分析功能HTML结构
+        const html = `
+            <div class="analysis-content">
+                <div class="text-center mb-4">
+                    <h4><i class="fas fa-shield-alt me-2"></i>安全分析</h4>
+                    <p class="text-muted">请选择文件分析方式开始安全分析</p>
+                </div>
+        
+                <div class="row justify-content-center mb-4">
+                    <!-- PCAP分析入口 -->
+                    <div class="col-md-5 mb-3">
+                        <div class="card feature-entrance h-100" id="pcapEntrance">
+                            <div class="card-body text-center p-4">
+                                <div class="text-primary mb-3">
+                                    <i class="fas fa-network-wired fa-3x"></i>
+                                </div>
+                                <h5>PCAP文件分析</h5>
+                                <p class="text-muted">上传网络抓包文件，自动提取域名并分析安全配置</p>
+                                <small class="text-primary">推荐网络流量分析</small>
+                                <div class="mt-3">
+                                    <button class="btn btn-primary" onclick="showPcapAnalysisForm()">
+                                        <i class="fas fa-upload me-2"></i>上传PCAP文件
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- 证书分析入口 -->
+                    <div class="col-md-5 mb-3">
+                        <div class="card feature-entrance h-100" id="certEntrance">
+                            <div class="card-body text-center p-4">
+                                <div class="text-warning mb-3">
+                                    <i class="fas fa-file-certificate fa-3x"></i>
+                                </div>
+                                <h5>证书文件分析</h5>
+                                <p class="text-muted">上传证书文件或压缩包，批量分析域名安全状况</p>
+                                <small class="text-warning">支持 .der 格式证书</small>
+                                <div class="mt-3">
+                                    <button class="btn btn-warning" onclick="showCertAnalysisForm()">
+                                        <i class="fas fa-upload me-2"></i>上传证书文件
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PCAP分析表单区域 - 初始隐藏 -->
+                <div class="analysis-form-section" id="pcapAnalysisForm" style="display: none;">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-network-wired me-2"></i>PCAP文件分析
+                            </h5>
+                            <button type="button" class="btn btn-sm btn-light" onclick="hideAnalysisForm('pcap')">
+                                <i class="fas fa-times"></i> 返回
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="pcapFile" class="form-label">上传PCAP文件</label>
+                                <input class="form-control" type="file" id="pcapFile" accept=".pcap,.pcapng">
+                                <div class="form-text">支持 .pcap 和 .pcapng 格式的文件</div>
+                            </div>
+                            <button type="button" class="btn btn-primary" id="analyzePcapBtn">
+                                <i class="fas fa-play me-2"></i>开始分析
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 证书文件分析表单区域 - 初始隐藏 -->
+                <div class="analysis-form-section" id="certAnalysisForm" style="display: none;">
+                    <div class="card">
+                        <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-file-certificate me-2"></i>证书文件分析
+                            </h5>
+                            <button type="button" class="btn btn-sm btn-light" onclick="hideAnalysisForm('cert')">
+                                <i class="fas fa-times"></i> 返回
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <ul class="nav nav-tabs" id="certTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="zip-tab" data-bs-toggle="tab" data-bs-target="#zip-tab-pane" type="button" role="tab">
+                                        <i class="fas fa-file-archive me-2"></i>压缩包上传
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="single-tab" data-bs-toggle="tab" data-bs-target="#single-tab-pane" type="button" role="tab">
+                                        <i class="fas fa-file me-2"></i>单个证书
+                                    </button>
+                                </li>
+                            </ul>
+                            
+                            <div class="tab-content mt-3" id="certTabContent">
+                                <div class="tab-pane fade show active" id="zip-tab-pane" role="tabpanel">
+                                    <div class="mb-3">
+                                        <label for="certZipFile" class="form-label">上传证书压缩包</label>
+                                        <input class="form-control" type="file" id="certZipFile" accept=".zip,.rar,.7z">
+                                        <div class="form-text">支持 .zip, .rar, .7z 格式的压缩包，内含 .der 格式证书文件</div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="single-tab-pane" role="tabpanel">
+                                    <div class="mb-3">
+                                        <label for="certDerFile" class="form-label">上传DER证书文件</label>
+                                        <input class="form-control" type="file" id="certDerFile" accept=".der">
+                                        <div class="form-text">支持 .der 格式的证书文件</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn btn-warning mt-3" id="analyzeCertBtn">
+                                <i class="fas fa-play me-2"></i>开始分析
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 分析结果区域 - 初始隐藏 -->
+                <div class="analysis-results-section" id="analysisResultsSection" style="display: none;">
+                    <!-- 骨架屏加载状态 -->
+                    <div id="loadingSkeleton" style="display: none;">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="skeleton-loader mb-3" style="height: 120px;"></div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="skeleton-loader" style="height: 100px;"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="skeleton-loader" style="height: 100px;"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="skeleton-loader" style="height: 100px;"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="skeleton-loader" style="height: 100px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 实际结果内容 -->
+                    <div id="actualResultsContent">
+                        <!-- 结果将通过JavaScript动态生成 -->
+                    </div>
+                    
+                    <!-- 返回按钮 -->
+                    <div class="text-center mt-4">
+                        <button class="btn btn-outline-secondary" onclick="resetSecurityAnalysis()">
+                            <i class="fas fa-arrow-left me-2"></i>返回安全分析
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        container.innerHTML = html;
+        
+        // 初始化安全分析事件
+        setTimeout(() => {
+            initializeSecurityAnalysisEvents();
+        }, 100);
+    }
+    
+    /**
+     * 显示PCAP分析表单
+     */
+    function showPcapAnalysisForm() {
+        document.getElementById('pcapEntrance').style.display = 'none';
+        document.getElementById('certEntrance').style.display = 'none';
+        document.getElementById('pcapAnalysisForm').style.display = 'block';
+    }
+    
+    /**
+     * 显示证书分析表单
+     */
+    function showCertAnalysisForm() {
+        document.getElementById('pcapEntrance').style.display = 'none';
+        document.getElementById('certEntrance').style.display = 'none';
+        document.getElementById('certAnalysisForm').style.display = 'block';
+    }
+    
+    /**
+     * 隐藏分析表单
+     */
+    function hideAnalysisForm(type) {
+        if (type === 'pcap') {
+            document.getElementById('pcapAnalysisForm').style.display = 'none';
+        } else if (type === 'cert') {
+            document.getElementById('certAnalysisForm').style.display = 'none';
+        }
+        document.getElementById('pcapEntrance').style.display = 'block';
+        document.getElementById('certEntrance').style.display = 'block';
+    }
+    
+    /**
+     * 重置安全分析
+     */
+    function resetSecurityAnalysis() {
+        document.getElementById('analysisResultsSection').style.display = 'none';
+        document.getElementById('pcapEntrance').style.display = 'block';
+        document.getElementById('certEntrance').style.display = 'block';
+        document.getElementById('pcapAnalysisForm').style.display = 'none';
+        document.getElementById('certAnalysisForm').style.display = 'none';
+    }
+    
+    /**
+     * 初始化安全分析事件
+     */
+    function initializeSecurityAnalysisEvents() {
+        console.log('初始化安全分析事件');
+        
+        // 绑定PCAP分析按钮事件
+        const analyzePcapBtn = document.getElementById('analyzePcapBtn');
+        if (analyzePcapBtn) {
+            analyzePcapBtn.addEventListener('click', function() {
+                console.log('点击PCAP分析按钮');
+                const fileInput = document.getElementById('pcapFile');
+                if (!fileInput.files.length) {
+                    alert('请选择PCAP文件');
+                    return;
+                }
+                
+                // 显示加载状态
+                showSecurityAnalysisLoading();
+                
+                // 调用原有的分析函数
+                if (typeof processPcapAnalysis === 'function') {
+                    processPcapAnalysis(fileInput.files[0]);
+                } else {
+                    console.error('processPcapAnalysis函数未定义');
+                    alert('分析功能未正确加载，请刷新页面重试');
+                }
+            });
+        }
+        
+        // 绑定证书分析按钮事件
+        const analyzeCertBtn = document.getElementById('analyzeCertBtn');
+        if (analyzeCertBtn) {
+            analyzeCertBtn.addEventListener('click', function() {
+                console.log('点击证书分析按钮');
+                const zipFileInput = document.getElementById('certZipFile');
+                const derFileInput = document.getElementById('certDerFile');
+                
+                let fileToAnalyze = null;
+                let analysisType = '';
+                
+                if (zipFileInput.files.length) {
+                    fileToAnalyze = zipFileInput.files[0];
+                    analysisType = 'zip';
+                } else if (derFileInput.files.length) {
+                    fileToAnalyze = derFileInput.files[0];
+                    analysisType = 'der';
+                } else {
+                    alert('请选择证书文件');
+                    return;
+                }
+                
+                // 显示加载状态
+                showSecurityAnalysisLoading();
+                
+                // 调用原有的分析函数
+                if (typeof processCertificateAnalysis === 'function') {
+                    processCertificateAnalysis(fileToAnalyze, analysisType);
+                } else {
+                    console.error('processCertificateAnalysis函数未定义');
+                    alert('分析功能未正确加载，请刷新页面重试');
+                }
+            });
+        }
+    }
+    
+    /**
+     * 显示安全分析加载状态
+     */
+    function showSecurityAnalysisLoading() {
+        // 隐藏所有表单
+        document.getElementById('pcapAnalysisForm').style.display = 'none';
+        document.getElementById('certAnalysisForm').style.display = 'none';
+        
+        // 显示结果区域和加载状态
+        const resultsSection = document.getElementById('analysisResultsSection');
+        const loadingSkeleton = document.getElementById('loadingSkeleton');
+        const actualResults = document.getElementById('actualResultsContent');
+        
+        if (resultsSection) {
+            resultsSection.style.display = 'block';
+        }
+        if (loadingSkeleton) {
+            loadingSkeleton.style.display = 'block';
+        }
+        if (actualResults) {
+            actualResults.style.display = 'none';
+        }
+        
+        // 滚动到结果区域
+        setTimeout(() => {
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
+    
+    /**
+     * 显示安全分析结果
+     */
+    function showSecurityAnalysisResult(resultData) {
+        console.log('显示安全分析结果:', resultData);
+        
+        const loadingSkeleton = document.getElementById('loadingSkeleton');
+        const actualResults = document.getElementById('actualResultsContent');
+        
+        if (loadingSkeleton) {
+            loadingSkeleton.style.display = 'none';
+        }
+        if (actualResults) {
+            actualResults.style.display = 'block';
+            
+            // 生成结果HTML
+            let resultHtml = '';
+            
+            // 如果有报告数据，显示完整结果
+            if (resultData && resultData.summary) {
+                const summary = resultData.summary;
+                const detailedResults = resultData.detailed_results || [];
+                
+                // 评分卡
+                resultHtml += `
+                    <div class="card mb-4 score-card">
+                        <div class="card-body text-center">
+                            <div class="score-number">${summary.security_score || 0}</div>
+                            <div class="score-grade">${getSecurityGrade(summary.security_score || 0)}</div>
+                            <p class="mb-0">基于 ${summary.analyzed_domains || 0} 个域名的安全分析</p>
+                        </div>
+                    </div>
+                `;
+                
+                // 详细发现
+                resultHtml += `
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0"><i class="fas fa-search me-2"></i>详细发现</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>安全特性统计</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-1"></i> HTTPS强制重定向: <strong>${summary.domains_with_https_enforcement || 0}</strong> 个域名</li>
+                                        <li><i class="fas fa-check text-success me-1"></i> HSTS保护: <strong>${summary.domains_with_hsts || 0}</strong> 个域名</li>
+                                        <li><i class="fas fa-check text-success me-1"></i> 安全头配置良好: <strong>${summary.domains_with_good_security_headers || 0}</strong> 个域名</li>
+                                        <li><i class="fas fa-check text-success me-1"></i> 证书链完整: <strong>${summary.domains_with_valid_certificate_chains || 0}</strong> 个域名</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>分析概况</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-star me-1"></i> 平均安全分数: <strong>${summary.security_score || 0}</strong></li>
+                                        <li><i class="fas fa-clock me-1"></i> 分析时间: <strong>${new Date().toLocaleString()}</strong></li>
+                                        <li><i class="fas fa-check-circle me-1"></i> 成功分析: <strong>${summary.analyzed_domains || 0}</strong> 个域名</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // 分析图表 - 使用原有代码的图表容器
+                resultHtml += `
+                    <div class="row mb-4" id="securityCharts">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="fas fa-chart-pie me-2"></i>安全分数分布</h6>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="securityChart" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="fas fa-chart-bar me-2"></i>安全特性覆盖率</h6>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="featuresChart" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // 域名详情
+                if (detailedResults.length > 0) {
+                    resultHtml += `
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0"><i class="fas fa-list me-2"></i>域名详情</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>域名</th>
+                                                <th class="text-center">HTTPS强制</th>
+                                                <th class="text-center">HSTS</th>
+                                                <th class="text-center">安全头</th>
+                                                <th class="text-center">证书链</th>
+                                                <th class="text-center">安全分数</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                    `;
+                    
+                    detailedResults.forEach(result => {
+                        const score = result.security_score || 0;
+                        resultHtml += `
+                            <tr>
+                                <td><code>${result.domain || '未知域名'}</code></td>
+                                <td class="text-center">${result.https_enforcement?.enabled ? '<i class="fas fa-check text-success" title="已配置"></i>' : '<i class="fas fa-times text-danger" title="未配置"></i>'}</td>
+                                <td class="text-center">${result.hsts?.enabled ? '<i class="fas fa-check text-success" title="已配置"></i>' : '<i class="fas fa-times text-danger" title="未配置"></i>'}</td>
+                                <td class="text-center">${getSecurityHeadersIcon(result.security_headers)}</td>
+                                <td class="text-center">${result.certificate_chain_valid ? '<i class="fas fa-check text-success" title="已配置"></i>' : '<i class="fas fa-times text-danger" title="未配置"></i>'}</td>
+                                <td class="text-center"><span class="badge ${getScoreColor(score)}">${score}</span></td>
+                            </tr>
+                        `;
+                    });
+                    
+                    resultHtml += `
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                actualResults.innerHTML = resultHtml;
+                
+                // 初始化图表 - 调用原有security.js中的图表初始化函数
+                setTimeout(() => {
+                    initializeChartsAfterAnalysis(resultData);
+                }, 100);
+                
+            } else {
+                // 没有结果数据
+                actualResults.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+                        <h4>分析结果为空</h4>
+                        <p class="text-muted">未能获取到分析结果，请重试</p>
+                        <button class="btn btn-primary mt-3" onclick="resetSecurityAnalysis()">
+                            <i class="fas fa-redo me-2"></i>重新分析
+                        </button>
+                    </div>
+                `;
+            }
+        }
+    }
+    
+    /**
+     * 初始化图表 - 在分析结果显示后调用
+     */
+    function initializeChartsAfterAnalysis(report) {
+        console.log('初始化图表，报告数据:', report);
+        
+        // 先销毁现有图表实例
+        if (typeof destroyAllChartInstances === 'function') {
+            destroyAllChartInstances();
+        }
+        
+        // 初始化图表配置
+        if (typeof initializeChartsConfig === 'function') {
+            initializeChartsConfig();
+        }
+        
+        // 安全分数分布图
+        const securityCtx = document.getElementById('securityChart');
+        if (securityCtx && typeof Chart !== 'undefined') {
+            console.log('创建安全分数分布图');
+            
+            // 计算分数分布
+            const detailedResults = report.detailed_results || [];
+            let excellent = 0, good = 0, average = 0, poor = 0;
+            
+            detailedResults.forEach(result => {
+                const score = result.security_score || 0;
+                if (score >= 80) excellent++;
+                else if (score >= 60) good++;
+                else if (score >= 40) average++;
+                else poor++;
+            });
+            
+            // 如果没有详细结果，使用默认分布
+            if (detailedResults.length === 0) {
+                excellent = 0; good = 0; average = 0; poor = 0;
+            }
+            
+            new Chart(securityCtx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['优秀 (80-100)', '良好 (60-79)', '一般 (40-59)', '较差 (0-39)'],
+                    datasets: [{
+                        data: [excellent, good, average, poor],
+                        backgroundColor: ['#28a745', '#20c997', '#ffc107', '#dc3545'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                                    return `${label}: ${value}个域名 (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 安全特性覆盖率图
+        const featuresCtx = document.getElementById('featuresChart');
+        if (featuresCtx && typeof Chart !== 'undefined') {
+            console.log('创建安全特性覆盖率图');
+            
+            const summary = report.summary || {};
+            const analyzedCount = summary.analyzed_domains || 1;
+            
+            // 计算各个特性的通过率
+            const httpsRate = Math.round((summary.domains_with_https_enforcement || 0) / analyzedCount * 100);
+            const hstsRate = Math.round((summary.domains_with_hsts || 0) / analyzedCount * 100);
+            const headersRate = Math.round((summary.domains_with_good_security_headers || 0) / analyzedCount * 100);
+            const chainsRate = Math.round((summary.domains_with_valid_certificate_chains || 0) / analyzedCount * 100);
+            
+            new Chart(featuresCtx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['HTTPS强制', 'HSTS保护', '安全头', '证书链'],
+                    datasets: [{
+                        label: '通过率 (%)',
+                        data: [httpsRate, hstsRate, headersRate, chainsRate],
+                        backgroundColor: [
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(32, 201, 151, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(0, 123, 255, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(40, 167, 69)',
+                            'rgb(32, 201, 151)',
+                            'rgb(255, 193, 7)',
+                            'rgb(0, 123, 255)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: '通过率 (%)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `通过率: ${context.raw}%`;
+                                },
+                                afterLabel: function(context) {
+                                    const feature = context.label;
+                                    const count = getFeatureCount(feature, summary);
+                                    const total = summary.analyzed_domains || 1;
+                                    return `${count}/${total} 个域名通过`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+    
+    /**
+     * 获取特性计数
+     */
+    function getFeatureCount(feature, summary) {
+        switch(feature) {
+            case 'HTTPS强制':
+                return summary.domains_with_https_enforcement || 0;
+            case 'HSTS保护':
+                return summary.domains_with_hsts || 0;
+            case '安全头':
+                return summary.domains_with_good_security_headers || 0;
+            case '证书链':
+                return summary.domains_with_valid_certificate_chains || 0;
+            default:
+                return 0;
+        }
+    }
+    
+    /**
+     * 获取安全等级
+     */
+    function getSecurityGrade(score) {
+        if (score >= 90) return '优秀';
+        if (score >= 70) return '良好';
+        if (score >= 50) return '一般';
+        return '需改进';
+    }
+    
+    /**
+     * 获取分数颜色
+     */
+    function getScoreColor(score) {
+        if (score >= 90) return 'bg-success';
+        if (score >= 70) return 'bg-primary';
+        if (score >= 50) return 'bg-warning';
+        return 'bg-danger';
+    }
+    
+    /**
+     * 获取安全头图标
+     */
+    function getSecurityHeadersIcon(securityHeaders) {
+        if (!securityHeaders || !securityHeaders.assessment) {
+            return '<i class="fas fa-times text-danger" title="未配置安全头"></i>';
+        }
+        
+        const assessment = securityHeaders.assessment;
+        const goodHeaders = [
+            assessment.has_csp,
+            assessment.has_x_content_type_options, 
+            assessment.has_x_frame_options,
+            assessment.has_referrer_policy
+        ].filter(Boolean).length;
+        
+        if (goodHeaders >= 3) {
+            return '<i class="fas fa-check text-success" title="安全头配置良好"></i>';
+        } else if (goodHeaders >= 1) {
+            return '<i class="fas fa-exclamation-triangle text-warning" title="部分安全头已配置"></i>';
+        } else {
+            return '<i class="fas fa-times text-danger" title="未配置安全头"></i>';
+        }
+    }
+    
+    /**
+     * 加载域名分析内容
+     */
+    function loadDomainAnalysisContent(container) {
+        container.innerHTML = `
+            <div class="text-center py-5">
+                <i class="fas fa-tools fa-3x text-muted mb-3"></i>
+                <h4 class="text-muted">域名分析功能开发中</h4>
+                <p class="text-muted">该功能正在积极开发，敬请期待</p>
+                <div class="mt-4">
+                    <p class="small text-muted">预计功能：</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i> 单域名安全配置分析</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> 批量域名安全评估</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> 实时安全检测报告</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+    }
+    
+    /**
+     * 加载常见问题内容
+     */
+    function loadFAQContent(container) {
+        container.innerHTML = `
+            <div class="faq-container">
+                <h4 class="mb-4"><i class="fas fa-question-circle me-2"></i>常见问题</h4>
+                
+                <!-- 问题分类标签 -->
+                <div class="mb-4">
+                    <nav class="faq-nav">
+                        <div class="nav nav-pills" id="faq-tab" role="tablist">
+                            <button class="nav-link active" id="faq-general-tab" data-bs-toggle="pill" data-bs-target="#faq-general" type="button">
+                                一般问题
+                            </button>
+                            <button class="nav-link" id="faq-analysis-tab" data-bs-toggle="pill" data-bs-target="#faq-analysis" type="button">
+                                分析相关
+                            </button>
+                            <button class="nav-link" id="faq-technical-tab" data-bs-toggle="pill" data-bs-target="#faq-technical" type="button">
+                                技术问题
+                            </button>
+                            <button class="nav-link" id="faq-security-tab" data-bs-toggle="pill" data-bs-target="#faq-security" type="button">
+                                安全建议
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+                
+                <!-- 问题内容 -->
+                <div class="tab-content" id="faq-content">
+                    <!-- 一般问题 -->
+                    <div class="tab-pane fade show active" id="faq-general">
+                        <div class="accordion" id="accordionGeneral">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#general1">
+                                        <i class="fas fa-question me-2"></i>这个系统的主要功能是什么？
+                                    </button>
+                                </h2>
+                                <div id="general1" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        本系统主要用于分析和评估网站的安全配置，包括：
+                                        <ul>
+                                            <li>HTTPS强制重定向配置检查</li>
+                                            <li>HSTS安全传输策略评估</li>
+                                            <li>安全响应头配置分析</li>
+                                            <li>证书链完整性验证</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#general2">
+                                        <i class="fas fa-question me-2"></i>系统支持哪些文件格式？
+                                    </button>
+                                </h2>
+                                <div id="general2" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        系统支持以下文件格式：
+                                        <ul>
+                                            <li><strong>PCAP文件</strong>: .pcap, .pcapng</li>
+                                            <li><strong>证书文件</strong>: .der</li>
+                                            <li><strong>压缩包</strong>: .zip, .rar, .7z (包含.der证书文件)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 分析相关 -->
+                    <div class="tab-pane fade" id="faq-analysis">
+                        <div class="accordion" id="accordionAnalysis">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#analysis1">
+                                        <i class="fas fa-chart-line me-2"></i>如何解读分析结果？
+                                    </button>
+                                </h2>
+                                <div id="analysis1" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <p>分析结果采用100分制评分体系：</p>
+                                        <ul>
+                                            <li><strong>90-100分</strong>: 优秀 - 安全配置完善</li>
+                                            <li><strong>70-89分</strong>: 良好 - 基本安全配置到位</li>
+                                            <li><strong>50-69分</strong>: 一般 - 需要改进</li>
+                                            <li><strong>0-49分</strong>: 需改进 - 存在严重安全问题</li>
+                                        </ul>
+                                        <p class="mt-2">系统会为每个域名提供详细的安全评估报告和改进建议。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#analysis2">
+                                        <i class="fas fa-filter me-2"></i>最多可以分析多少个域名？
+                                    </button>
+                                </h2>
+                                <div id="analysis2" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        每次分析最多可以处理20个域名。如果PCAP文件或证书中包含的域名超过20个，系统会自动选择前20个进行分析。
+                                        对于大量域名的分析需求，建议分批进行分析。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 技术问题 -->
+                    <div class="tab-pane fade" id="faq-technical">
+                        <div class="accordion" id="accordionTechnical">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#technical1">
+                                        <i class="fas fa-shield-alt me-2"></i>为什么要使用HSTS？
+                                    </button>
+                                </h2>
+                                <div id="technical1" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <p><strong>HSTS（HTTP Strict Transport Security）</strong>是一项重要的安全功能，它能够：</p>
+                                        <ul>
+                                            <li>强制浏览器使用HTTPS连接，防止SSL剥离攻击</li>
+                                            <li>确保通信始终加密，保护用户隐私</li>
+                                            <li>减少中间人攻击的风险</li>
+                                            <li>提高网站的安全评级</li>
+                                        </ul>
+                                        <p class="mt-2">建议配置HSTS并设置足够长的max-age（至少1年）。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#technical2">
+                                        <i class="fas fa-certificate me-2"></i>什么是证书链完整性？
+                                    </button>
+                                </h2>
+                                <div id="technical2" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <p><strong>证书链完整性</strong>指证书验证过程中，从终端证书到根证书的完整信任链。</p>
+                                        <p>完整的证书链应该包括：</p>
+                                        <ul>
+                                            <li>终端证书（服务器证书）</li>
+                                            <li>中间证书（Intermediate CA）</li>
+                                            <li>根证书（Root CA）</li>
+                                        </ul>
+                                        <p class="mt-2">证书链不完整会导致浏览器信任问题，影响用户体验和安全性。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 安全建议 -->
+                    <div class="tab-pane fade" id="faq-security">
+                        <div class="accordion" id="accordionSecurity">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#security1">
+                                        <i class="fas fa-lightbulb me-2"></i>如何提高网站安全评分？
+                                    </button>
+                                </h2>
+                                <div id="security1" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <p>以下是提高网站安全评分的建议：</p>
+                                        <ol>
+                                            <li><strong>启用HTTPS强制重定向</strong>：确保所有HTTP请求都重定向到HTTPS</li>
+                                            <li><strong>配置HSTS策略</strong>：设置至少1年的max-age</li>
+                                            <li><strong>添加安全响应头</strong>：
+                                                <ul>
+                                                    <li>Content-Security-Policy (CSP)</li>
+                                                    <li>X-Content-Type-Options</li>
+                                                    <li>X-Frame-Options</li>
+                                                    <li>Referrer-Policy</li>
+                                                </ul>
+                                            </li>
+                                            <li><strong>确保证书链完整</strong>：包含所有必要的中间证书</li>
+                                            <li><strong>使用现代加密算法</strong>：如TLS 1.2以上版本</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#security2">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>常见的安全风险有哪些？
+                                    </button>
+                                </h2>
+                                <div id="security2" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <p>网站常见的安全风险包括：</p>
+                                        <ul>
+                                            <li><strong>SSL/TLS配置错误</strong>：使用过时的协议或弱加密算法</li>
+                                            <li><strong>证书问题</strong>：证书过期、域名不匹配、证书链不完整</li>
+                                            <li><strong>缺少安全响应头</strong>：导致点击劫持、MIME类型攻击等</li>
+                                            <li><strong>HTTP内容</strong>：敏感信息通过HTTP传输</li>
+                                            <li><strong>Cookie安全问题</strong>：缺少Secure和HttpOnly标记</li>
+                                        </ul>
+                                        <p class="mt-2">建议定期使用本系统进行安全检测，及时发现并修复问题。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    /**
+     * 初始化更新按钮
+     */
+    function initializeRefreshButton() {
+        const refreshBtn = document.getElementById('refreshBtn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', function() {
+                location.reload();
+            });
+        }
+    }
+    
+    /**
+     * 安全分析完成后的回调函数
+     */
+    function onSecurityAnalysisComplete(resultData) {
+        console.log('安全分析完成，显示结果:', resultData);
+        showSecurityAnalysisResult(resultData);
+    }
+
+        /**
+     * 销毁所有图表实例
+     */
+    function destroyAllChartInstances() {
+        // 销毁Chart.js注册的所有实例
+        if (typeof Chart !== 'undefined') {
+            try {
+                Chart.helpers.each(Chart.instances, function(instance) {
+                    try {
+                        instance.destroy();
+                    } catch (e) {
+                        console.warn('销毁Chart实例失败:', e);
+                    }
+                });
+            } catch (e) {
+                console.warn('遍历Chart实例失败:', e);
+            }
+        }
+    }
+    
+    /**
+     * 初始化图表配置
+    */
+    function initializeChartsConfig() {
+        // 设置全局的Chart.js配置
+        if (typeof Chart !== 'undefined') {
+            Chart.defaults.font.family = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+            Chart.defaults.color = '#4E5165';
+            Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(56, 58, 122, 0.9)';
+            Chart.defaults.plugins.tooltip.titleColor = '#FFFFFF';
+            Chart.defaults.plugins.tooltip.bodyColor = '#F6F6FA';
+            Chart.defaults.plugins.tooltip.borderColor = '#6E71C0';
+            Chart.defaults.plugins.tooltip.borderWidth = 1;
+            Chart.defaults.plugins.tooltip.cornerRadius = 4;
+            Chart.defaults.plugins.legend.labels.boxWidth = 12;
+            Chart.defaults.plugins.legend.labels.padding = 15;
+        }
+    }
+    </script>
+</body>
+</html>
