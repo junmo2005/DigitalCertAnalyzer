@@ -1,0 +1,158 @@
+2026-03-30 20:28:22,876 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\program\uploads\pcap_20260330202822_dpdk_capture_2025-09-05_20-56-53_part007.pcap
+2026-03-30 20:30:36,431 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\program\uploads\pcap_20260330203035_dpdk_capture_2025-09-05_20-56-53_part001.pcap
+2026-03-30 21:48:13,991 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\program\uploads\pcap_20260330214813_dpdk_capture_2025-09-05_20-56-53_part005.pcap
+2026-03-30 22:13:01,092 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\program\uploads\pcap_20260330221259_dpdk_capture_2025-09-05_20-56-53_part005.pcap
+2026-03-30 22:37:02,208 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\program\uploads\pcap_20260330223700_dpdk_capture_2025-09-05_20-56-53_part005.pcap
+2026-04-01 19:39:31,654 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\program\uploads\archive_20260401193931_check.zip
+2026-04-01 19:42:07,264 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\program\uploads\pcap_20260401194206_dpdk_capture_2025-09-05_20-56-53_part003.pcap
+2026-04-01 20:10:00,068 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\program\uploads\pcap_20260401200958_dpdk_capture_2025-09-05_20-56-53_part002.pcap
+2026-04-01 20:14:43,431 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\program\uploads\pcap_20260401201442_dpdk_capture_2025-09-05_20-56-53_part003.pcap
+2026-04-01 20:25:58,599 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\program\uploads\pcap_20260401202557_dpdk_capture_2025-09-05_20-56-53_part001.pcap
+2026-04-10 17:32:26,768 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260410173225_dpdk_capture_2025-09-05_20-56-53_part001.pcap
+2026-04-10 17:45:25,515 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260410174522_dpdk_capture_2025-09-05_20-56-53_part002.pcap
+2026-04-10 18:05:51,860 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\archive_20260410180551_check.zip
+2026-04-10 18:05:57,176 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\archive_20260410180557_check.zip
+2026-04-14 21:06:42,145 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260414210640_dpdk_capture_2025-09-05_20-56-53_part001.pcap
+2026-04-14 21:49:13,455 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260414214912_dpdk_capture_2025-09-05_20-56-53_part006.pcap
+2026-04-20 16:11:32,928 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260420161131_dpdk_capture_2025-09-05_20-56-53_part006.pcap
+2026-04-22 10:27:31,946 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260422102731_chunk_2.pcap
+2026-04-22 10:28:20,060 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260422102810_chunk_31.pcap
+2026-04-22 10:28:42,823 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260422102842_chunk_24.pcap
+2026-04-22 10:33:34,088 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\archive_20260422103334_cert_202511.zip
+2026-04-23 18:06:38,829 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260423180638_chunk_6.pcap
+2026-05-01 13:20:34,603 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260501132033_dpdk_capture_2025-09-05_20-56-53_part009.pcap
+2026-05-03 17:09:01,312 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260503170900_dpdk_capture_2025-09-05_20-56-53_part003.pcap
+2026-05-03 17:30:12,658 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert - 副本\uploads\pcap_20260503173011_dpdk_capture_2025-09-05_20-56-53_part006.pcap
+2026-05-04 13:32:55,975 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260504133254_dpdk_capture_2025-09-05_20-56-53_part003.pcap
+2026-05-08 10:53:35,268 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508105334_chunk_10.pcap
+2026-05-08 12:26:31,432 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508122630_dpdk_capture_2025-09-05_20-56-53_part025.pcap
+2026-05-08 12:33:13,033 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508123312_dpdk_capture_2025-09-05_20-56-53_part012.pcap
+2026-05-08 13:03:23,925 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508130322_dpdk_capture_2025-09-05_20-56-53_part007.pcap
+2026-05-08 13:33:59,199 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\archive_20260508133359_cert_202507.zip
+2026-05-08 14:00:05,540 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508140003_chunk_29.pcap
+2026-05-08 14:40:17,712 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508144016_chunk_10.pcap
+2026-05-08 14:52:18,757 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508145217_chunk_6.pcap
+2026-05-08 15:16:57,549 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508151655_chunk_8.pcap
+2026-05-08 15:28:48,735 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508152846_chunk_26.pcap
+2026-05-08 16:48:10,182 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\archive_20260508164810_cert_202512.zip
+2026-05-08 16:58:55,968 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508165854_chunk_9.pcap
+2026-05-08 19:16:27,895 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508191626_chunk_7.pcap
+2026-05-08 19:27:05,931 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508192704_chunk_4.pcap
+2026-05-08 19:35:03,277 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508193501_chunk_2.pcap
+2026-05-08 19:47:54,232 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508194753_chunk_5.pcap
+2026-05-08 19:53:40,657 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\archive_20260508195340_cert_202511.zip
+2026-05-08 20:04:42,146 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508200440_chunk_14.pcap
+2026-05-08 20:17:04,195 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508201702_chunk_4.pcap
+2026-05-08 20:47:21,696 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508204720_chunk_8.pcap
+2026-05-08 21:04:10,682 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508210409_chunk_8.pcap
+2026-05-08 21:17:59,649 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508211759_dpdk_capture_2025-09-05_20-56-53_part026.pcap
+2026-05-08 21:28:37,270 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508212835_dpdk_capture_2025-09-05_20-56-53_part003.pcap
+2026-05-08 21:44:38,720 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508214438_dpdk_capture_2025-09-05_20-56-53_part011.pcap
+2026-05-08 21:50:35,752 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508215034_dpdk_capture_2025-09-05_20-56-53_part012.pcap
+2026-05-08 21:59:21,407 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260508215919_dpdk_capture_2025-09-05_20-56-53_part012.pcap
+2026-05-09 12:13:26,510 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509121324_chunk_10.pcap
+2026-05-09 12:22:59,706 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509122259_chunk_5.pcap
+2026-05-09 12:49:28,885 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509124927_chunk_3.pcap
+2026-05-09 17:07:22,798 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509170721_chunk_5.pcap
+2026-05-09 17:45:41,981 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509174540_chunk_9.pcap
+2026-05-09 20:02:13,199 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509200210_chunk_7.pcap
+2026-05-09 21:50:46,913 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509215046_chunk_1.pcap
+2026-05-09 21:50:46,916 - app - ERROR - PCAP处理失败: table analysis_tasks has no column named source_type
+Traceback (most recent call last):
+  File "D:\PythonTest\Digital Certificate\cert V4\routes\cert_routes.py", line 49, in handle_pcap_upload
+    task_id = db.create_task(user_id=None, analysis_module='certificate', task_type='pcap',
+                            source_file=file.filename)
+  File "D:\PythonTest\Digital Certificate\cert V4\database\db_manager.py", line 73, in create_task
+    self.cursor.execute(
+    ~~~~~~~~~~~~~~~~~~~^
+        """INSERT INTO analysis_tasks
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        (task_id, user_id, analysis_module, task_type, source_type, source_file)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+sqlite3.OperationalError: table analysis_tasks has no column named source_type
+
+2026-05-09 21:57:37,158 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509215735_chunk_1.pcap
+2026-05-09 21:57:37,164 - app - ERROR - PCAP处理失败: 7 values for 6 columns
+Traceback (most recent call last):
+  File "D:\PythonTest\Digital Certificate\cert V4\routes\cert_routes.py", line 49, in handle_pcap_upload
+    task_id = db.create_task(user_id=None, analysis_module='certificate', task_type='pcap',
+                            source_file=file.filename)
+  File "D:\PythonTest\Digital Certificate\cert V4\database\db_manager.py", line 73, in create_task
+    self.cursor.execute(
+    ~~~~~~~~~~~~~~~~~~~^
+        """INSERT INTO analysis_tasks
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        (task_id, user_id, analysis_module, task_type, source_file)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+sqlite3.OperationalError: 7 values for 6 columns
+
+2026-05-09 22:05:06,378 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509220504_chunk_1.pcap
+2026-05-09 22:05:06,382 - app - ERROR - PCAP处理失败: 7 values for 6 columns
+Traceback (most recent call last):
+  File "D:\PythonTest\Digital Certificate\cert V4\routes\cert_routes.py", line 49, in handle_pcap_upload
+    task_id = db.create_task(user_id=None, analysis_module='certificate', task_type='pcap',
+                            source_file=file.filename)
+  File "D:\PythonTest\Digital Certificate\cert V4\database\db_manager.py", line 73, in create_task
+    self.cursor.execute(
+    ~~~~~~~~~~~~~~~~~~~^
+        """INSERT INTO analysis_tasks
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        (task_id, user_id, analysis_module, task_type, source_file)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+sqlite3.OperationalError: 7 values for 6 columns
+
+2026-05-09 22:06:52,974 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509220652_chunk_1.pcap
+2026-05-09 22:06:52,976 - app - ERROR - PCAP处理失败: 7 values for 6 columns
+Traceback (most recent call last):
+  File "D:\PythonTest\Digital Certificate\cert V4\routes\cert_routes.py", line 49, in handle_pcap_upload
+    task_id = db.create_task(user_id=None, analysis_module='certificate', task_type='pcap',
+                            source_file=file.filename)
+  File "D:\PythonTest\Digital Certificate\cert V4\database\db_manager.py", line 73, in create_task
+    self.cursor.execute(
+    ~~~~~~~~~~~~~~~~~~~^
+        """INSERT INTO analysis_tasks
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        (task_id, user_id, analysis_module, task_type, source_file)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+sqlite3.OperationalError: 7 values for 6 columns
+
+2026-05-09 22:14:35,599 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509221435_chunk_1.pcap
+2026-05-09 22:47:12,415 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509224712_sample.pcap
+2026-05-09 22:53:53,177 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260509225353_sample.pcap
+2026-05-11 08:10:56,543 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260511081054_dpdk_capture_2025-09-05_20-56-53_part024.pcap
+2026-05-11 11:20:10,661 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260511112008_dpdk_capture_2025-09-05_20-56-53_part022.pcap
+2026-05-12 22:41:17,611 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260512224115_dpdk_capture_2025-09-05_20-56-53_part004.pcap
+2026-05-12 22:45:58,482 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\archive_20260512224558_cert_202507.zip
+2026-05-12 22:48:02,906 - app - ERROR - 压缩包处理失败: name 'validity' is not defined
+Traceback (most recent call last):
+  File "D:\PythonTest\Digital Certificate\cert V4\routes\cert_routes.py", line 245, in handle_zip_upload
+    "cert_details": validity.get('cert_details', [])
+                    ^^^^^^^^
+NameError: name 'validity' is not defined
+
+2026-05-12 22:49:01,584 - app - ERROR - 批量处理失败: name 'validity' is not defined
+Traceback (most recent call last):
+  File "D:\PythonTest\Digital Certificate\cert V4\routes\cert_routes.py", line 176, in handle_batch_analysis
+    "cert_details": validity.get('cert_details', [])
+                    ^^^^^^^^
+NameError: name 'validity' is not defined
+
+2026-05-15 07:45:57,764 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\archive_20260515074557_check.zip
+2026-05-15 07:52:01,159 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\archive_20260515075201_check.zip
+2026-05-15 07:57:32,176 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\archive_20260515075732_check.zip
+2026-05-15 09:08:32,610 - app - INFO - 压缩包文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\archive_20260515090832_check.zip
+2026-05-15 09:09:54,444 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260515090952_chunk_2.pcap
+2026-05-15 09:12:49,103 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260515091247_chunk_12.pcap
+2026-05-15 09:28:47,224 - app - INFO - PCAP文件保存至: D:\PythonTest\Digital Certificate\cert V4\uploads\pcap_20260515092845_chunk_10.pcap

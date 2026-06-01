@@ -1,0 +1,1886 @@
+{
+  "total_certificates": 70,
+  "valid_certificates": 41,
+  "expiring_soon_certificates": 5,
+  "expired_certificates": 24,
+  "crypto_stats": {
+    "RSA:2048(强)": 59,
+    "RSA:4096(强)": 6,
+    "ECC:secp256r1(强)": 3,
+    "ECC:secp384r1(很强)": 2
+  },
+  "san_stats": {
+    "with_san": 46,
+    "wildcard": 37,
+    "domain_counts": {
+      "2": 30,
+      "0": 24,
+      "1": 7,
+      "13": 1,
+      "16": 1,
+      "67": 1,
+      "7": 1,
+      "8": 1,
+      "18": 1,
+      "4": 1,
+      "61": 1,
+      "17": 1
+    }
+  },
+  "ca_stats": {
+    "commonName=Apple Server Authentication CA, organizationalUnitName=Certification Authority, organizationName=Apple Inc., countryName=US": 1,
+    "countryName=US, organizationName=Apple Inc., organizationalUnitName=Apple Certification Authority, commonName=Apple Root CA": 2,
+    "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=GeoTrust CN RSA CA G1": 1,
+    "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root CA": 4,
+    "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1": 13,
+    "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2": 8,
+    "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign RSA OV SSL CA 2018": 3,
+    "organizationalUnitName=GlobalSign Root CA - R3, organizationName=GlobalSign, commonName=GlobalSign": 2,
+    "countryName=BE, organizationName=GlobalSign nv-sa, organizationalUnitName=Root CA, commonName=GlobalSign Root CA": 1,
+    "commonName=HTTPS-Self-Signed-Certificate-d8cedc5482aa3891": 1,
+    "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure RSA TLS Issuing CA 07": 2,
+    "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1": 11,
+    "countryName=US, stateOrProvinceName=Washington, localityName=Redmond, organizationName=Microsoft Corporation, commonName=Microsoft Secure Server CA 2011": 2,
+    "countryName=US, stateOrProvinceName=Washington, localityName=Redmond, organizationName=Microsoft Corporation, commonName=Microsoft Root Certificate Authority 2011": 1,
+    "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure RSA TLS Issuing CA 04": 1,
+    "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign GCC R3 OV TLS CA 2024": 2,
+    "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure ECC TLS Issuing CA 07": 1,
+    "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G3": 1,
+    "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign ECC OV SSL CA 2018": 1,
+    "organizationalUnitName=GlobalSign ECC Root CA - R5, organizationName=GlobalSign, commonName=GlobalSign": 1,
+    "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site Pro G2 TLS CN RSA4096 SHA256 2022 CA1": 1,
+    "countryName=US, organizationName=DigiCert Inc, commonName=DigiCert Global G2 TLS RSA SHA256 2020 CA1": 1,
+    "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=Encryption Everywhere DV TLS CA - G2": 3,
+    "countryName=US, organizationName=DigiCert Inc, commonName=DigiCert SHA2 Secure Server CA": 1,
+    "countryName=CN, organizationName=WoTrus CA Limited, commonName=WoTrus OV Server CA  [Run by the Issuer]": 1,
+    "countryName=US, stateOrProvinceName=New Jersey, localityName=Jersey City, organizationName=The USERTRUST Network, commonName=USERTrust RSA Certification Authority": 2,
+    "countryName=GB, stateOrProvinceName=Greater Manchester, localityName=Salford, organizationName=Comodo CA Limited, commonName=AAA Certificate Services": 1,
+    "countryName=CN, organizationName=WoTrus CA Limited, commonName=WoTrus DV Server CA  [Run by the Issuer]": 1
+  },
+  "key_usage_stats": {
+    "Digital Signature": 66,
+    "Key Encipherment": 43,
+    "Certificate Sign": 23,
+    "CRL Sign": 23,
+    "Key Agreement": 1,
+    "Data Encipherment": 2
+  },
+  "parse_errors": 2,
+  "cert_details": [
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_002_chunk_1_msg2_cert1.der",
+      "cert_hash": "4729373199ac4740e6428dc47ab2659f3b2b315fa9b2b86a8268e6e0b41ecc64",
+      "subject": "commonName=gdmf.apple.com, organizationName=Apple Inc., stateOrProvinceName=California, countryName=US",
+      "issuer": "commonName=Apple Server Authentication CA, organizationalUnitName=Certification Authority, organizationName=Apple Inc., countryName=US",
+      "not_before": "2025-08-05T20:59:32",
+      "not_after": "2026-09-02T19:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 117,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "gdmf-ados.apple.com",
+        "gdmf.apple.com"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 90910771425763954881196684130716378463,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_003_chunk_1_msg2_cert2.der",
+      "cert_hash": "efd0c3352e8f5cc6c7678a5cb48370c341db58d39fc0569d5e106f02c4fcaceb",
+      "subject": "commonName=Apple Server Authentication CA, organizationalUnitName=Certification Authority, organizationName=Apple Inc., countryName=US",
+      "issuer": "countryName=US, organizationName=Apple Inc., organizationalUnitName=Apple Certification Authority, commonName=Apple Root CA",
+      "not_before": "2014-03-08T01:53:04",
+      "not_after": "2029-03-08T01:53:04",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 1034,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 2551698227326583572,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_004_chunk_1_msg2_cert3.der",
+      "cert_hash": "b0b1730ecbc7ff4505142c49f1295e6eda6bcaed7e2c68c5be91b5a11001f024",
+      "subject": "countryName=US, organizationName=Apple Inc., organizationalUnitName=Apple Certification Authority, commonName=Apple Root CA",
+      "issuer": "countryName=US, organizationName=Apple Inc., organizationalUnitName=Apple Certification Authority, commonName=Apple Root CA",
+      "not_before": "2006-04-25T21:40:36",
+      "not_after": "2035-02-09T21:40:36",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 3199,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 2,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_005_chunk_1_msg3_cert1.der",
+      "cert_hash": "b9402392b58f70cf244280e5a9297e6deeb52c2ad4f92d6bbef9cb89630eefb7",
+      "subject": "countryName=CN, stateOrProvinceName=北京市, organizationName=联想（北京）有限公司, commonName=*.lenovo.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=GeoTrust CN RSA CA G1",
+      "not_before": "2025-05-16T00:00:00",
+      "not_after": "2026-04-14T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.lenovo.com",
+        "lenovo.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 8530320798336523055087736192054209861,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_006_chunk_1_msg3_cert2.der",
+      "cert_hash": "23ddf08b22373d86158eb9c99fdb5366b19804560531372dd20dce3fb766f56c",
+      "subject": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=GeoTrust CN RSA CA G1",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root CA",
+      "not_before": "2019-06-20T12:27:58",
+      "not_after": "2029-06-20T12:27:58",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 1139,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 13315337301267391553979468751907515467,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_007_chunk_1_msg3_cert3.der",
+      "cert_hash": "4348a0e9444c78cb265e058d5e8944b4d84f9662bd26db257f8934a443c70161",
+      "subject": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root CA",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root CA",
+      "not_before": "2006-11-10T00:00:00",
+      "not_after": "2031-11-10T00:00:00",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 2011,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 10944719598952040374951832963794454346,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_008_chunk_1_msg4_cert1.der",
+      "cert_hash": "966bc91d810ffa40682364dfb005af288fc6b15c6f37a57305e66f1da0cbbebc",
+      "subject": "commonName=*.xueqiu.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-05-12T00:00:00",
+      "not_after": "2026-05-20T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": true,
+      "days_remaining": 12,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.xueqiu.com",
+        "xueqiu.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 7662753686464827824520940489094686738,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_009_chunk_1_msg4_cert2.der",
+      "cert_hash": "4422e963ee53cd58cc9f85cd40bf5ffec0095fdf1a154535661c1c06bcadc69b",
+      "subject": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "not_before": "2017-11-02T12:24:33",
+      "not_after": "2027-11-02T12:24:33",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 543,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 14816627491795588044059060260691382010,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_010_chunk_1_msg4_cert3.der",
+      "cert_hash": "79d57b15dfa65c2870eafe11b637765909cfe937b49c15ce7f194030cab395ad",
+      "subject": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root CA",
+      "not_before": "2024-01-18T00:00:00",
+      "not_after": "2031-11-09T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 2011,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 21102522142526635661076456618353799272,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_014_chunk_1_msg6_cert1.der",
+      "cert_hash": "a4e032a3c917a0ccae08f37905ac8ebef9372bda9de126ad48343bdffae97564",
+      "subject": "countryName=CN, stateOrProvinceName=北京, localityName=北京, organizationName=北京三快科技有限公司, commonName=*.meituan.com",
+      "issuer": "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign RSA OV SSL CA 2018",
+      "not_before": "2025-06-30T11:00:19",
+      "not_after": "2026-08-01T11:00:18",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 85,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.meituan.com",
+        "meituan.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 980084890473097015584655190,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_015_chunk_1_msg6_cert2.der",
+      "cert_hash": "b676ffa3179e8812093a1b5eafee876ae7a6aaf231078dad1bfb21cd2893764a",
+      "subject": "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign RSA OV SSL CA 2018",
+      "issuer": "organizationalUnitName=GlobalSign Root CA - R3, organizationName=GlobalSign, commonName=GlobalSign",
+      "not_before": "2018-11-21T00:00:00",
+      "not_after": "2028-11-21T00:00:00",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 927,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 153000603918210013455007253847,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_016_chunk_1_msg6_cert3.der",
+      "cert_hash": "445eec78bc61215044a0379656aa2d5db5e42f76cb70b8d14c2077aa943d4ebb",
+      "subject": "organizationalUnitName=GlobalSign Root CA - R3, organizationName=GlobalSign, commonName=GlobalSign",
+      "issuer": "countryName=BE, organizationName=GlobalSign nv-sa, organizationalUnitName=Root CA, commonName=GlobalSign Root CA",
+      "not_before": "2018-09-19T00:00:00",
+      "not_after": "2028-01-28T12:00:00",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 630,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 153000549611226544087872427626,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_017_chunk_1_msg7_cert1.der",
+      "cert_hash": "0ac52664c217952ac154309b653edb869cd87da17f7938f21c63686f2a4c357e",
+      "subject": "commonName=HTTPS-Self-Signed-Certificate-d8cedc5482aa3891",
+      "issuer": "commonName=HTTPS-Self-Signed-Certificate-d8cedc5482aa3891",
+      "not_before": "2023-05-22T16:46:17",
+      "not_after": "2043-05-17T16:46:17",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 6218,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [],
+      "serial_number": 0,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_018_chunk_1_msg8_cert1.der",
+      "cert_hash": "aa25877df5df01ad992f51b5df12c27385b35c3dc75c530cce8bca7e14cc0282",
+      "subject": "countryName=US, stateOrProvinceName=WA, localityName=Redmond, organizationName=Microsoft Corporation, commonName=*.gr.global.aa-rt.sharepoint.com",
+      "issuer": "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure RSA TLS Issuing CA 07",
+      "not_before": "2025-10-14T03:49:03",
+      "not_after": "2026-08-25T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 109,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.gr.global.aa-rt.sharepoint.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 1137559413964720180405112814570713199277681023,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_019_chunk_1_msg8_cert2.der",
+      "cert_hash": "724247794951c93f3e41711617e95ce143263e3196c345a1da78f6639749ec03",
+      "subject": "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure RSA TLS Issuing CA 07",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "not_before": "2023-06-08T00:00:00",
+      "not_after": "2026-08-25T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 109,
+      "crypto_strength": "RSA:4096(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 13643597960818647064060896474064009808,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_020_chunk_1_msg9_cert1.der",
+      "cert_hash": "47e156dc2457e4fcd7c54fffd691b8ed6a53d455351ab842f23f067e339dbd9c",
+      "subject": "countryName=US, stateOrProvinceName=WA, localityName=Redmond, organizationName=Microsoft Corporation, commonName=*.events.data.microsoft.com",
+      "issuer": "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure RSA TLS Issuing CA 07",
+      "not_before": "2025-09-30T01:44:56",
+      "not_after": "2026-03-29T01:44:56",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.events.data.microsoft.com",
+        "events.data.microsoft.com",
+        "*.pipe.aria.microsoft.com",
+        "pipe.skype.com",
+        "*.pipe.skype.com",
+        "*.mobile.events.data.microsoft.com",
+        "mobile.events.data.microsoft.com",
+        "*.events.data.msn.com",
+        "events.data.msn.com",
+        "*.events.data.msn.cn",
+        "events.data.msn.cn",
+        "*.vortex.data.microsoft.com",
+        "vortex.data.microsoft.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 1137550310304675830276098782574533200806144170,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_023_chunk_1_msg11_cert1.der",
+      "cert_hash": "4f1d42239b4301468093d5df1c9b67ced49bdbc9f99b59848bf66544ea5d93d1",
+      "subject": "commonName=*.douyinvod.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-03-24T00:00:00",
+      "not_after": "2026-03-23T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.douyinvod.com",
+        "douyinvod.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 10165566265385030428471019340644195647,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_025_chunk_1_msg11_cert3.der",
+      "cert_hash": "cb3ccbb76031e5e0138f8dd39a23f9de47ffc35e43c1144cea27d46a5ab1cb5f",
+      "subject": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "not_before": "2013-08-01T12:00:00",
+      "not_after": "2038-01-15T12:00:00",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 4270,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 4293743540046975378534879503202253541,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_030_chunk_1_msg16_cert1.der",
+      "cert_hash": "f3d2b5dcd688a89a83dd2eb822a0f19363875e1cf2e9e2b3641c2209f59d2fdc",
+      "subject": "countryName=CN, stateOrProvinceName=广东省, localityName=东莞市, organizationName=vivo Mobile Communication Co., Ltd., commonName=*.vivo.com.cn",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-06-03T00:00:00",
+      "not_after": "2026-07-04T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 57,
+      "crypto_strength": "ECC:secp256r1(强)",
+      "san_domains": [
+        "*.vivo.com.cn",
+        "vivo.com.cn"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Agreement"
+      ],
+      "serial_number": 12221488933872139506675347803924096084,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_031_chunk_1_msg16_cert2.der",
+      "cert_hash": "7cd6cdd25eee2512aaf1419afd44c146c43aa1093d5a60d4ed39efbdda815ad4",
+      "subject": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "not_before": "2022-12-15T00:00:00",
+      "not_after": "2032-12-14T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 2412,
+      "crypto_strength": "RSA:4096(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 6322785136292721537093241018621196483,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_032_chunk_1_msg17_cert1.der",
+      "cert_hash": "d0580ea44e66b4862ebb9bf1e032f54c5c35bb520e3ec3a2f4c7f02f8c3de88c",
+      "subject": "commonName=*.byteimg.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-03-25T00:00:00",
+      "not_after": "2026-03-24T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.byteimg.com",
+        "byteimg.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 8595402987948557534984662085754572375,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_035_chunk_1_msg18_cert1.der",
+      "cert_hash": "22131bf64eed6efb4ab185d2eb1ddea8162dcfbca30100404126aa42d927b892",
+      "subject": "countryName=US, stateOrProvinceName=WA, localityName=Redmond, organizationName=Microsoft, organizationalUnitName=WSE, commonName=*.events.data.microsoft.com",
+      "issuer": "countryName=US, stateOrProvinceName=Washington, localityName=Redmond, organizationName=Microsoft Corporation, commonName=Microsoft Secure Server CA 2011",
+      "not_before": "2025-05-17T02:31:19",
+      "not_after": "2026-05-17T02:31:19",
+      "is_expired": false,
+      "is_expiring_soon": true,
+      "days_remaining": 8,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.events.data.microsoft.com",
+        "events.data.microsoft.com",
+        "*.vortex-win.data.microsoft.com",
+        "vortex-win.data.microsoft.com",
+        "*.vortex.data.microsoft.com",
+        "vortex.data.microsoft.com",
+        "*.events.data.microsoft.us",
+        "events.data.microsoft.us",
+        "*.vortex-win.data.microsoft.us",
+        "vortex-win.data.microsoft.us",
+        "*.vortex.data.microsoft.us",
+        "vortex.data.microsoft.us",
+        "*.events.endpoint.security.microsoft.us",
+        "events.endpoint.security.microsoft.us",
+        "*.events.endpoint.security.microsoft.com",
+        "events.endpoint.security.microsoft.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment",
+        "Data Encipherment"
+      ],
+      "serial_number": 1137338009976878662773266923558393077194294182,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_036_chunk_1_msg18_cert2.der",
+      "cert_hash": "83688f2aef71386e0936c4b3013b07e8e0c796d8427716dd48b2a63d79509129",
+      "subject": "countryName=US, stateOrProvinceName=Washington, localityName=Redmond, organizationName=Microsoft Corporation, commonName=Microsoft Secure Server CA 2011",
+      "issuer": "countryName=US, stateOrProvinceName=Washington, localityName=Redmond, organizationName=Microsoft Corporation, commonName=Microsoft Root Certificate Authority 2011",
+      "not_before": "2011-10-18T22:55:19",
+      "not_after": "2026-10-18T23:05:19",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 163,
+      "crypto_strength": "RSA:4096(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 459244887010107669348356,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_037_chunk_1_msg19_cert1.der",
+      "cert_hash": "d0ac6b45b92cec35cc09b3cb4f77119375bfb7d13b3d31c67f675d38eb99984a",
+      "subject": "countryName=US, stateOrProvinceName=WA, localityName=Redmond, organizationName=Microsoft Corporation, commonName=www.bing.com",
+      "issuer": "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure RSA TLS Issuing CA 04",
+      "not_before": "2025-12-16T22:38:02",
+      "not_after": "2026-06-14T22:38:02",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 37,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.platform.bing.com",
+        "*.bing.com",
+        "bing.com",
+        "ieonline.microsoft.com",
+        "*.windowssearch.com",
+        "cn.ieonline.microsoft.com",
+        "*.origin.bing.com",
+        "*.mm.bing.net",
+        "*.api.bing.com",
+        "*.cn.bing.net",
+        "*.cn.bing.com",
+        "ssl-api.bing.com",
+        "ssl-api.bing.net",
+        "*.api.bing.net",
+        "*.bingapis.com",
+        "bingsandbox.com",
+        "feedback.microsoft.com",
+        "insertmedia.bing.office.net",
+        "r.bat.bing.com",
+        "*.r.bat.bing.com",
+        "*.dict.bing.com",
+        "*.ssl.bing.com",
+        "*.appex.bing.com",
+        "*.platform.cn.bing.com",
+        "wp.m.bing.com",
+        "*.m.bing.com",
+        "global.bing.com",
+        "windowssearch.com",
+        "search.msn.com",
+        "*.bingsandbox.com",
+        "*.api.tiles.ditu.live.com",
+        "*.t0.tiles.ditu.live.com",
+        "*.t1.tiles.ditu.live.com",
+        "*.t2.tiles.ditu.live.com",
+        "*.t3.tiles.ditu.live.com",
+        "3d.live.com",
+        "api.search.live.com",
+        "beta.search.live.com",
+        "cnweb.search.live.com",
+        "ditu.live.com",
+        "farecast.live.com",
+        "image.live.com",
+        "images.live.com",
+        "local.live.com.au",
+        "localsearch.live.com",
+        "ls4d.search.live.com",
+        "mail.live.com",
+        "mapindia.live.com",
+        "local.live.com",
+        "maps.live.com",
+        "maps.live.com.au",
+        "mindia.live.com",
+        "news.live.com",
+        "origin.cnweb.search.live.com",
+        "preview.local.live.com",
+        "search.live.com",
+        "test.maps.live.com",
+        "video.live.com",
+        "videos.live.com",
+        "virtualearth.live.com",
+        "wap.live.com",
+        "webmaster.live.com",
+        "www.local.live.com.au",
+        "www.maps.live.com.au",
+        "webmasters.live.com",
+        "ecn.dev.virtualearth.net",
+        "www.bing.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 1137615959756906806004235315602516799447422418,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_038_chunk_1_msg19_cert2.der",
+      "cert_hash": "33f9731be910a66dc6acd07d9d9ca212ee8d0a9a5c78c8bf3e89bb74df8fb936",
+      "subject": "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure RSA TLS Issuing CA 04",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "not_before": "2023-06-08T00:00:00",
+      "not_after": "2026-08-25T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 109,
+      "crypto_strength": "RSA:4096(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 13258180361375818842016148963025933469,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_041_chunk_1_msg22_cert1.der",
+      "cert_hash": "d0d68fde9f35edd5634faeb139340b5eda56aa04cceee618480f334988c49f86",
+      "subject": "commonName=*.snssdk.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-03-24T00:00:00",
+      "not_after": "2026-03-23T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.snssdk.com",
+        "snssdk.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 14524629165019210357513299700464405675,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_044_chunk_1_msg23_cert1.der",
+      "cert_hash": "47925c652991795a456a62cb42bfab8164457225cd5cb734552e444db3dd4745",
+      "subject": "countryName=CN, stateOrProvinceName=ZheJiang, localityName=HangZhou, organizationName=Alibaba (China) Technology Co., Ltd., commonName=*.arms.aliyuncs.com",
+      "issuer": "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign GCC R3 OV TLS CA 2024",
+      "not_before": "2025-01-16T03:36:01",
+      "not_after": "2026-02-17T03:36:00",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.arms.aliyuncs.com",
+        "arms-retcode.aliyuncs.com",
+        "arms-retcode-sg.aliyuncs.com",
+        "arms-retcode-hz-finance.aliyuncs.com",
+        "rum.aliyuncs.com",
+        "*.rum.aliyuncs.com",
+        "arms.aliyuncs.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 26140935735160555563358291127,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_045_chunk_1_msg23_cert2.der",
+      "cert_hash": "996bb81f161e1dac9a3939ab7a42b4131d6dcfbe6e0da4b5a6e19b5c8701842a",
+      "subject": "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign GCC R3 OV TLS CA 2024",
+      "issuer": "organizationalUnitName=GlobalSign Root CA - R3, organizationName=GlobalSign, commonName=GlobalSign",
+      "not_before": "2024-09-18T03:14:38",
+      "not_after": "2029-03-18T00:00:00",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 1044,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 172662927842278576440692665805237176410,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_047_chunk_1_msg24_cert1.der",
+      "cert_hash": "22a6faae830375310fac699805d8ad88c98544a21344b653cb9f4ef8427f8a10",
+      "subject": "countryName=CN, stateOrProvinceName=Guangdong Province, localityName=Shenzhen, organizationName=Tencent Technology (Shenzhen) Company Limited, commonName=h.trace.qq.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-04-23T00:00:00",
+      "not_after": "2026-04-22T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "h.trace.qq.com"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 13393891396465720921912644932247473970,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_049_chunk_1_msg25_cert1.der",
+      "cert_hash": "776e9dafecd314717b63f14837f9c4ecad70c97fd97a1520799514f6bd17f384",
+      "subject": "commonName=*.amemv.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-03-24T00:00:00",
+      "not_after": "2026-03-23T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.amemv.com",
+        "amemv.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 9604888756475935720188745017875697445,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_053_chunk_1_msg27_cert1.der",
+      "cert_hash": "4ff38dea5a65804424015e2143ba934668804f99c6fa631a4be75bcba94f28f5",
+      "subject": "countryName=CN, stateOrProvinceName=Guangdong Province, localityName=Shenzhen, organizationName=Shenzhen Tencent Computer Systems Company Limited, commonName=*.e.qq.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-09-28T00:00:00",
+      "not_after": "2026-10-24T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 169,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.e.qq.com",
+        "*.ad.qq.com",
+        "*.page.ad.qq.com",
+        "*.page.e.qq.com",
+        "*.tianqin.qq.com",
+        "test-tianqin.qq.com",
+        "tianqin.qq.com",
+        "e.qq.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 3817087261706143321389543536614198211,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_055_chunk_1_msg28_cert1.der",
+      "cert_hash": "ad5932cd28659b108eb656a41e92bc350129f436a5805d93b4dcd39fe0450aba",
+      "subject": "countryName=CN, stateOrProvinceName=Guangdong Province, localityName=Shenzhen, organizationName=Shenzhen Tencent Computer Systems Company Limited, commonName=*.stream.qqmusic.qq.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-03-02T00:00:00",
+      "not_after": "2026-03-04T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.stream.qqmusic.qq.com",
+        "*.intoo.qq.com",
+        "*.kg.qq.com",
+        "*.live.y.qq.com",
+        "*.music.qq.com",
+        "*.music.tc.qq.com",
+        "*.qqmusic.com",
+        "*.stream.tencentmusic.com",
+        "*.tencentmusic.com",
+        "*.tsmusic.kg.qq.com",
+        "*.twns.qq.com",
+        "*.y.qq.com",
+        "intoo.qq.com",
+        "moo.qq.com",
+        "qqmusic.com",
+        "qqmusic.qq.com",
+        "tencentmusic.com",
+        "stream.qqmusic.qq.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 4357751208886385565151080348120271174,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_057_chunk_1_msg29_cert1.der",
+      "cert_hash": "0fc0c3dd6eb1a5ff281b991e9b467ae4fe61ac872f8a76df97dd32c2cb8362aa",
+      "subject": "countryName=CN, stateOrProvinceName=Guangdong Province, localityName=Shenzhen, organizationName=Shenzhen Tencent Computer Systems Company Limited, commonName=*.gdt.qq.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-11-27T00:00:00",
+      "not_after": "2026-12-28T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 234,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.gdt.qq.com",
+        "gdt.qq.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 4596056415444018076590080241026278354,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_059_chunk_1_msg30_cert1.der",
+      "cert_hash": "ab5dd6630eb1497ce51429b14bdf6f1e71ff7da9b6ad4b05d09db3222b058b36",
+      "subject": "countryName=CN, stateOrProvinceName=上海, localityName=上海, organizationName=上海幻电信息科技有限公司, commonName=*.bilivideo.com",
+      "issuer": "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign RSA OV SSL CA 2018",
+      "not_before": "2025-06-09T05:01:01",
+      "not_after": "2026-07-11T05:01:00",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 63,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.bilivideo.com",
+        "bilivideo.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 34025917572716740846514922255,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_062_chunk_1_msg31_cert1.der",
+      "cert_hash": "4501e8644d431476ce44a70e702647a2fb4d374c5ff9fa374e38de955bb6563b",
+      "subject": "countryName=US, stateOrProvinceName=WA, localityName=Redmond, organizationName=Microsoft Corporation, commonName=catalog.gamepass.com",
+      "issuer": "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure ECC TLS Issuing CA 07",
+      "not_before": "2025-03-26T18:12:41",
+      "not_after": "2026-03-21T18:12:41",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "ECC:secp256r1(强)",
+      "san_domains": [
+        "catalog-beta.gamepass.com",
+        "catalog-dev.gamepass.com",
+        "catalog-ppe.gamepass.com",
+        "catalog.gamepass.com"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature"
+      ],
+      "serial_number": 1137338260854478188069237348802774137237979235,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_063_chunk_1_msg31_cert2.der",
+      "cert_hash": "be23414a42e74886e7c72a861ba2ddda0175ed829223d894c5d272651fc0c189",
+      "subject": "countryName=US, organizationName=Microsoft Corporation, commonName=Microsoft Azure ECC TLS Issuing CA 07",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G3",
+      "not_before": "2023-06-08T00:00:00",
+      "not_after": "2026-08-25T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 109,
+      "crypto_strength": "ECC:secp384r1(很强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 20099816380166858708064722820466481715,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_064_chunk_1_msg32_cert1.der",
+      "cert_hash": "fc0924f645ea9eb636c83e2bdbfa2fd17185094d38ff67df425d86861b303d25",
+      "subject": "countryName=CN, stateOrProvinceName=Guangdong Province, localityName=Shenzhen, organizationName=Tencent Technology (Shenzhen) Company Limited, commonName=rmonitor.qq.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-04-23T00:00:00",
+      "not_after": "2026-04-22T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "rmonitor.qq.com"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 11525162650386841732133376144721739832,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_066_chunk_1_msg33_cert1.der",
+      "cert_hash": "7a71e6d4e462c7e432c57cf246948f7a6b52df03e79ceecac88ac6d42431ad6c",
+      "subject": "countryName=CN, stateOrProvinceName=上海市, organizationName=行吟信息科技（上海）有限公司, commonName=*.xiaohongshu.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-02-08T00:00:00",
+      "not_after": "2026-02-23T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.xiaohongshu.com",
+        "xiaohongshu.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 10924843419008265666685124446618752116,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_069_chunk_1_msg34_cert1.der",
+      "cert_hash": "20b6b05435258cfaca05eab4c9dce4e0202d85f07ac31d1845a0de2a2ea709d2",
+      "subject": "commonName=*.micloud.xiaomi.net",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-07-27T00:00:00",
+      "not_after": "2026-08-25T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 109,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.micloud.xiaomi.net",
+        "micloud.xiaomi.net"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 16735493493809352311198149883181054380,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_074_chunk_1_msg36_cert1.der",
+      "cert_hash": "baac47e4b0cff68dddb8ebf53c902094d3dfbda97664320a630c128fedb3bd41",
+      "subject": "countryName=CN, stateOrProvinceName=浙江省, localityName=杭州市, organizationName=阿里巴巴（中国）网络技术有限公司, commonName=*.upaas.quark.cn",
+      "issuer": "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign ECC OV SSL CA 2018",
+      "not_before": "2025-03-18T02:56:02",
+      "not_after": "2026-04-19T02:56:01",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "ECC:secp256r1(强)",
+      "san_domains": [
+        "*.upaas.quark.cn",
+        "upaas.quark.cn"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature"
+      ],
+      "serial_number": 23700969290716384115325041273,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_075_chunk_1_msg36_cert2.der",
+      "cert_hash": "87c71553445eb3c33c3e0710711b99e9c7773f04d91ac38a9f4c082ee24101ea",
+      "subject": "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign ECC OV SSL CA 2018",
+      "issuer": "organizationalUnitName=GlobalSign ECC Root CA - R5, organizationName=GlobalSign, commonName=GlobalSign",
+      "not_before": "2018-11-21T00:00:00",
+      "not_after": "2028-11-21T00:00:00",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 927,
+      "crypto_strength": "ECC:secp384r1(很强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 153000606118409493719133825244,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_076_chunk_1_msg37_cert1.der",
+      "cert_hash": "664323eaf3cc95f80b750d15af2ffabb48e58e2d980dd30c3b8a3f08e3c4d300",
+      "subject": "countryName=CN, stateOrProvinceName=北京市, organizationName=BeiJing Baidu Netcom Science Technology Co., Ltd, commonName=sofire.baidu.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site Pro G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-02-06T00:00:00",
+      "not_after": "2026-02-25T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "sofire.baidu.com"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 17378467887508988930063116905117249252,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_077_chunk_1_msg37_cert2.der",
+      "cert_hash": "826ebd90e946c25d3df05abfb911ac0a426c7a9a063b7224464710bec5a58ce1",
+      "subject": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site Pro G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "not_before": "2022-12-15T00:00:00",
+      "not_after": "2032-12-14T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 2412,
+      "crypto_strength": "RSA:4096(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 20987263674879368187960603476953210960,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_084_chunk_1_msg41_cert1.der",
+      "cert_hash": "669b43c8d5b1bc0b7450e9fd8dfe93e0f5ea381d5be2f2b52f9901fdee28c06f",
+      "subject": "countryName=CN, stateOrProvinceName=Guangdong Province, localityName=Shenzhen, organizationName=Shenzhen Tencent Computer Systems Company Limited, commonName=weixin.qq.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-04-28T00:00:00",
+      "not_after": "2026-05-28T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": true,
+      "days_remaining": 20,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "weixin.qq.com",
+        "*.acimg.cn",
+        "*.b.qq.com",
+        "*.cdn-go.cn",
+        "*.cdn.myqcloud.com",
+        "*.dd.cdntips.com",
+        "*.dd.cdntips.net",
+        "*.dd.qq.com",
+        "*.dl.txcdns.com",
+        "*.dlied1.cdntips.net",
+        "*.file.myqcloud.com",
+        "*.gdtimg.com",
+        "*.gtimg.cn",
+        "*.gtimg.com",
+        "*.i.gtimg.cn",
+        "*.idqqimg.com",
+        "*.imgcache.gtimg.cn",
+        "*.imgcache.qq.com",
+        "*.mail.qq.com",
+        "*.mp.qq.com",
+        "*.myapp.com",
+        "*.qcloud.com",
+        "*.qpic.cn",
+        "*.qzonestyle.gtimg.cn",
+        "*.qzs.qq.com",
+        "*.ugdtimg.com",
+        "*.url.cn",
+        "*.weishi.qq.com",
+        "*.weiyun.com",
+        "*.wx.qq.com",
+        "agame.qq.com",
+        "cdn-go.cn",
+        "cloudcache.qq.com",
+        "d3g.qq.com",
+        "dd.cdntips.com",
+        "dd.cdntips.net",
+        "dldir1.qq.com",
+        "dldir2.qq.com",
+        "dldir3.qq.com",
+        "dlied1.cdntips.com",
+        "dlied1.cdntips.net",
+        "dlied1.qq.com",
+        "dlied2.qq.com",
+        "dlied4.qq.com",
+        "dlied5.qq.com",
+        "dlied6.qq.com",
+        "filecdn-update.qq.com",
+        "filecdn.qq.com",
+        "gdtimg.com",
+        "imgcache.qq.com",
+        "music.qq.com",
+        "origin.cloudcache.qq.com",
+        "own-update.qq.com",
+        "pingjs.qq.com",
+        "qzapp.qq.com",
+        "rescdn.qqmail.com",
+        "sharechain.qq.com",
+        "twx.qq.com",
+        "ugdtimg.com",
+        "update1.dlied.qq.com",
+        "weiyun.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 13139655239081039323195270500624550756,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_086_chunk_1_msg42_cert1.der",
+      "cert_hash": "9f161054bea61998324beff2c4663980cc2d3472bed35defd9774410a9ffa385",
+      "subject": "commonName=*.xiaomiwear.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-03-17T00:00:00",
+      "not_after": "2026-03-17T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.xiaomiwear.com",
+        "xiaomiwear.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 8979409966514492578759527559105662970,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_092_chunk_1_msg46_cert1.der",
+      "cert_hash": "174aa73121c2fae5a397d816d17d364826e2f06fd0df80188243e0711e31613e",
+      "subject": "countryName=CN, stateOrProvinceName=Guangdong province, localityName=Shenzhen, organizationName=Shenzhen HeXunHuaGu Information Technologies Co.Ltd, commonName=*.jpush.cn",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, commonName=DigiCert Global G2 TLS RSA SHA256 2020 CA1",
+      "not_before": "2025-04-27T00:00:00",
+      "not_after": "2026-05-28T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": true,
+      "days_remaining": 20,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.jpush.cn",
+        "jpush.cn"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 12940352533023287303506392872851667275,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_093_chunk_1_msg46_cert2.der",
+      "cert_hash": "c8025f9fc65fdfc95b3ca8cc7867b9a587b5277973957917463fc813d0b625a9",
+      "subject": "countryName=US, organizationName=DigiCert Inc, commonName=DigiCert Global G2 TLS RSA SHA256 2020 CA1",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "not_before": "2021-03-30T00:00:00",
+      "not_after": "2031-03-29T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 1786,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 17226682543955925492517929723242541158,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_094_chunk_1_msg47_cert1.der",
+      "cert_hash": "e9969029c130dace10f8086db74a19969b05766bfcbf5b1999a426aad7b6f3f5",
+      "subject": "countryName=CN, stateOrProvinceName=北京, localityName=北京, organizationName=北京三快科技有限公司, commonName=*.d.meituan.net",
+      "issuer": "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign RSA OV SSL CA 2018",
+      "not_before": "2025-01-13T07:30:09",
+      "not_after": "2026-02-14T07:30:08",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.d.meituan.net",
+        "d.meituan.net"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 2479046197308948034624214087,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_097_chunk_1_msg48_cert1.der",
+      "cert_hash": "7bced5c5c7ec014a1bc617312b725ad0da45f884b12a7c96a1f6620e321336b0",
+      "subject": "commonName=*.miui.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=Encryption Everywhere DV TLS CA - G2",
+      "not_before": "2025-10-20T00:00:00",
+      "not_after": "2026-11-09T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 185,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.miui.com",
+        "miui.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 10118626459343826367127781678515645011,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_098_chunk_1_msg48_cert2.der",
+      "cert_hash": "b1ac8cfb181b9c9354e1775fcbdfcfe7898c5cc9a17d76315b57c112eee55234",
+      "subject": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=Encryption Everywhere DV TLS CA - G2",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root G2",
+      "not_before": "2017-11-27T12:46:40",
+      "not_after": "2027-11-27T12:46:40",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 568,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 18448224870038921493073873828295040723,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_100_chunk_1_msg49_cert1.der",
+      "cert_hash": "3a9a25d270027e086ca95a036011180b3b0d167d15181a71e4099f5646cc4383",
+      "subject": "commonName=xljsci.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=Encryption Everywhere DV TLS CA - G2",
+      "not_before": "2025-05-12T00:00:00",
+      "not_after": "2026-05-11T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": true,
+      "days_remaining": 3,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "xljsci.com",
+        "www.xljsci.com"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 10031620809471171798262807381797285069,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_105_chunk_1_msg53_cert1.der",
+      "cert_hash": "51f9458fe666a4d69eb2ae02742d1f4ef2761a7cdd31dbec095eebde7be998a9",
+      "subject": "commonName=weatherapi.market.xiaomi.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-11-29T00:00:00",
+      "not_after": "2026-12-30T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 236,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "weatherapi.market.xiaomi.com"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 1455829896613093564105094715319985744,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_108_chunk_1_msg54_cert1.der",
+      "cert_hash": "3370e0a7411c89e5391c9cdfaae1bccce8f5401c7b57a72389231a63c9f4cda0",
+      "subject": "countryName=CN, stateOrProvinceName=广东省, localityName=东莞市, organizationName=vivo Mobile Communication Co., Ltd., commonName=*.vivo.com.cn",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-06-03T00:00:00",
+      "not_after": "2026-07-04T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 57,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.vivo.com.cn",
+        "vivo.com.cn"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 9837076139701110771640885633355138390,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_112_chunk_1_msg56_cert1.der",
+      "cert_hash": "8b7fa29d48b53478bb3d1f2d1a529bef4d46f1f5b7c3a2c34e449589eeb6edb9",
+      "subject": "countryName=US, stateOrProvinceName=Washington, localityName=Redmond, organizationName=Microsoft Corporation, commonName=login.live.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, commonName=DigiCert SHA2 Secure Server CA",
+      "not_before": "2025-10-23T00:00:00",
+      "not_after": "2026-04-21T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "login.live.com",
+        "*.login.live.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 4463359550654834621226079608322532745,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_113_chunk_1_msg56_cert2.der",
+      "cert_hash": "c1ad7778796d20bca65c889a2655021156528bb62ff5fa43e1b8e5a83e3d2eaa",
+      "subject": "countryName=US, organizationName=DigiCert Inc, commonName=DigiCert SHA2 Secure Server CA",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=DigiCert Global Root CA",
+      "not_before": "2020-09-23T00:00:00",
+      "not_after": "2030-09-22T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 1598,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 3261708894152296593076398650851921056,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_114_chunk_1_msg57_cert1.der",
+      "cert_hash": "b30d47e3c687f5a9cc3d28ad3d0f2e1bcbc96d5592e3722438d9eef0a66d6640",
+      "subject": "commonName=*.volces.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-03-25T00:00:00",
+      "not_after": "2026-03-25T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.volces.com",
+        "volces.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 9808885583183702979183795454183512187,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_117_chunk_1_msg58_cert1.der",
+      "cert_hash": "8cc104df975e4226767de88be5599689e9824303b99953de1cfe0d14b8d86cc3",
+      "subject": "commonName=*.365yg.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-03-25T00:00:00",
+      "not_after": "2026-03-24T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.365yg.com",
+        "365yg.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 17698710453453073209194664732243297651,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_120_chunk_1_msg59_cert1.der",
+      "cert_hash": "9ff931f784fd5555365d77188cd63fbb68b6bfc2f04129a3c73c83324f1347c3",
+      "subject": "commonName=*.miwifi.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-07-03T00:00:00",
+      "not_after": "2026-07-25T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 78,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.miwifi.com",
+        "miwifi.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 9348719048132037037683492858971425510,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_123_chunk_1_msg60_cert1.der",
+      "cert_hash": "e5248c830d0c7f8f58ed562e35a40fe4d653bfe6b8a8e950042fb68d25956672",
+      "subject": "commonName=*.douyinvod.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-03-25T00:00:00",
+      "not_after": "2026-03-24T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.douyinvod.com",
+        "douyinvod.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 15171138055162767915434110710072803761,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_127_chunk_1_msg62_cert1.der",
+      "cert_hash": "41667a934e62bc3ec4e3a3223c3d9dc229f3071c1ab50da74748b5f8cc807538",
+      "subject": "countryName=CN, stateOrProvinceName=ZheJiang, localityName=HangZhou, organizationName=Alibaba (China) Technology Co., Ltd., commonName=*.danuoyi.alicdn.com",
+      "issuer": "countryName=BE, organizationName=GlobalSign nv-sa, commonName=GlobalSign GCC R3 OV TLS CA 2024",
+      "not_before": "2025-08-18T02:31:02",
+      "not_after": "2026-09-19T02:31:01",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 133,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.danuoyi.alicdn.com",
+        "danuoyi.alicdn.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 4439518333600656990163228735,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_133_chunk_1_msg64_cert1.der",
+      "cert_hash": "47441feb52322ef204bdb337fda834da048b592fea02f2268fb8ba4a6462fe2d",
+      "subject": "countryName=US, stateOrProvinceName=WA, localityName=Redmond, organizationName=Microsoft, organizationalUnitName=WSE, commonName=settings-win.data.microsoft.com",
+      "issuer": "countryName=US, stateOrProvinceName=Washington, localityName=Redmond, organizationName=Microsoft Corporation, commonName=Microsoft Secure Server CA 2011",
+      "not_before": "2025-10-23T20:56:06",
+      "not_after": "2026-10-17T20:56:06",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 162,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "settings-win.data.microsoft.com"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment",
+        "Data Encipherment"
+      ],
+      "serial_number": 1137338010544001654329432019845206665930474515,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_138_chunk_1_msg67_cert1.der",
+      "cert_hash": "27e97940ae87f30024ab742c54e2b685564124d679634637b5594cc0fae90cbd",
+      "subject": "countryName=CN, stateOrProvinceName=北京市, organizationName=北京奇虎科技有限公司, commonName=*.shouji.360.cn",
+      "issuer": "countryName=CN, organizationName=WoTrus CA Limited, commonName=WoTrus OV Server CA  [Run by the Issuer]",
+      "not_before": "2025-03-17T00:00:00",
+      "not_after": "2026-04-17T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.shouji.360.cn",
+        "shouji.360.cn"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 328382456008596138777508477655194834392,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_139_chunk_1_msg67_cert2.der",
+      "cert_hash": "0ed9963e1bba0417e1fc17bd38e92061f965113b921cb357f131f12f08534557",
+      "subject": "countryName=CN, organizationName=WoTrus CA Limited, commonName=WoTrus OV Server CA  [Run by the Issuer]",
+      "issuer": "countryName=US, stateOrProvinceName=New Jersey, localityName=Jersey City, organizationName=The USERTRUST Network, commonName=USERTrust RSA Certification Authority",
+      "not_before": "2020-01-08T00:00:00",
+      "not_after": "2030-01-07T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 1340,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 38589988504014182888676802594160242733,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_140_chunk_1_msg67_cert3.der",
+      "cert_hash": "68b9c761219a5b1f0131784474665db61bbdb109e00f05ca9f74244ee5f5f52b",
+      "subject": "countryName=US, stateOrProvinceName=New Jersey, localityName=Jersey City, organizationName=The USERTRUST Network, commonName=USERTrust RSA Certification Authority",
+      "issuer": "countryName=GB, stateOrProvinceName=Greater Manchester, localityName=Salford, organizationName=Comodo CA Limited, commonName=AAA Certificate Services",
+      "not_before": "2019-03-12T00:00:00",
+      "not_after": "2028-12-31T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 968,
+      "crypto_strength": "RSA:4096(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 76359301477803385872276235234032301461,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_142_chunk_1_msg69_cert1.der",
+      "cert_hash": "4aaf92cf85d6726718fa9d6e27f85cc7cc832f81db093544bb1f92d0889a3399",
+      "subject": "commonName=*.ssl.qhres2.com",
+      "issuer": "countryName=CN, organizationName=WoTrus CA Limited, commonName=WoTrus DV Server CA  [Run by the Issuer]",
+      "not_before": "2025-03-03T00:00:00",
+      "not_after": "2026-04-03T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.ssl.qhres2.com",
+        "ssl.qhres2.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 154932357815019686797336701878115032512,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_143_chunk_1_msg69_cert2.der",
+      "cert_hash": "f8e3bf1efe08ef700c4edbfdc4ff319d58ecb780dfb0dda7d51047b39b28718e",
+      "subject": "countryName=CN, organizationName=WoTrus CA Limited, commonName=WoTrus DV Server CA  [Run by the Issuer]",
+      "issuer": "countryName=US, stateOrProvinceName=New Jersey, localityName=Jersey City, organizationName=The USERTRUST Network, commonName=USERTrust RSA Certification Authority",
+      "not_before": "2020-01-08T00:00:00",
+      "not_after": "2030-01-07T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 1340,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Certificate Sign",
+        "CRL Sign"
+      ],
+      "serial_number": 283697454526103962522589919632422227888,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_145_chunk_1_msg70_cert1.der",
+      "cert_hash": "75fb70eaf02fcf6dac80aaa32346c94a155746627e52c41f2e7d5a2e05068990",
+      "subject": "countryName=CN, stateOrProvinceName=Guangdong Province, localityName=Shenzhen, organizationName=Tencent Technology (Shenzhen) Company Limited, commonName=*.sginput.qq.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-04-23T00:00:00",
+      "not_after": "2026-04-22T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.sginput.qq.com",
+        "sginput.qq.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 12728925176173352902298536825712042936,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_149_chunk_1_msg72_cert1.der",
+      "cert_hash": "cd0dcd8522b609129ef1d0912ef563247c2f79f54838b2dd9820066e27964261",
+      "subject": "countryName=CN, stateOrProvinceName=Guangdong Province, localityName=Shenzhen, organizationName=Shenzhen Tencent Computer Systems Company Limited, commonName=y.qq.com",
+      "issuer": "countryName=US, organizationName=DigiCert, Inc., commonName=DigiCert Secure Site OV G2 TLS CN RSA4096 SHA256 2022 CA1",
+      "not_before": "2025-09-28T00:00:00",
+      "not_after": "2026-10-27T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 172,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "y.qq.com",
+        "*.gtimg.cn",
+        "*.kg.qq.com",
+        "*.live.kg.qq.com",
+        "*.music.qq.com",
+        "*.music.tc.qq.com",
+        "*.wesingapp.com",
+        "*.y.qq.com",
+        "kg.qq.com",
+        "kg2.qq.com",
+        "kg3.qq.com",
+        "kg4.qq.com",
+        "kg5.qq.com",
+        "kg6.qq.com",
+        "kg7.qq.com",
+        "kg8.qq.com",
+        "kg9.qq.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 16961235447170292111797276943562721361,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_153_chunk_1_msg74_cert1.der",
+      "cert_hash": "0fa72c4a0ea9200efa00b57b8adb26f92d9bcc392b06d68b22aa05ea06a0ba92",
+      "subject": "commonName=*.zijieapi.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=RapidSSL TLS RSA CA G1",
+      "not_before": "2025-03-24T00:00:00",
+      "not_after": "2026-03-23T23:59:59",
+      "is_expired": true,
+      "is_expiring_soon": false,
+      "days_remaining": 0,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "*.zijieapi.com",
+        "zijieapi.com"
+      ],
+      "has_san": true,
+      "has_wildcard": true,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 12422036433679185751541265481623958917,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_156_chunk_1_msg75_cert1.der",
+      "cert_hash": "ba807914209d59f1e18719804631e6d4451046cfea7d25c66c0bc71f5732ca0e",
+      "subject": "commonName=cdn.exp.xiaomi.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, organizationalUnitName=www.digicert.com, commonName=Encryption Everywhere DV TLS CA - G2",
+      "not_before": "2025-06-20T00:00:00",
+      "not_after": "2026-07-21T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 74,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "cdn.exp.xiaomi.com"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 20431269517902696572361776940064010354,
+      "version": "v3"
+    }
+  ],
+  "total_before_deduplication": 153,
+  "valid_percentage": 58.6,
+  "expiring_percentage": 7.1,
+  "expired_percentage": 34.3
+}

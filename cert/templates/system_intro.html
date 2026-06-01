@@ -1,0 +1,423 @@
+!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>系统介绍 - 证链智审</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="{{ url_for('static', filename='css/system_intro.css') }}" rel="stylesheet">
+<base target="_blank">
+</head>
+<body>
+
+  <!-- ====== 固定导航栏 ====== -->
+  <nav class="top-nav" id="topNav">
+    <div class="nav-left">
+      <a href="/" class="nav-logo">
+        <i class="fas fa-shield-alt"></i>
+        <span>证链智审</span>
+      </a>
+    </div>
+    <div class="nav-center">
+      <a href="#features" class="nav-link">功能</a>
+      <a href="#workflow" class="nav-link">流程</a>
+      <a href="#tech" class="nav-link">架构</a>
+      <a href="#scenarios" class="nav-link">场景</a>
+    </div>
+    <div class="nav-right">
+      <a href="/cert-analysis" class="nav-cta">进入系统</a>
+    </div>
+  </nav>
+
+  <!-- ====== Hero Section ====== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-inner">
+      <div class="hero-label">Digital Certificate Security Situational Awareness</div>
+      <h1 class="hero-title">
+        <span class="line">数字证书</span>
+        <span class="line">安全态势感知</span>
+      </h1>
+      <p class="hero-desc">
+        从真实加密流量洞察证书安全态势<br>
+        AI 驱动智能运维决策，让每一次握手都值得信赖
+      </p>
+
+      <!-- 三张预览卡片 -->
+      <div class="hero-cards" id="heroCards">
+        <div class="hero-card card-cert">
+          <div class="card-icon"><i class="fas fa-certificate"></i></div>
+          <div class="card-label">CERT</div>
+          <div class="card-title">证书流量分析</div>
+          <div class="card-shape"></div>
+        </div>
+        <div class="hero-card card-sec">
+          <div class="card-icon"><i class="fas fa-lock"></i></div>
+          <div class="card-label">SEC</div>
+          <div class="card-title">域名安全扫描</div>
+          <div class="card-shape"></div>
+        </div>
+        <div class="hero-card card-ai">
+          <div class="card-icon"><i class="fas fa-brain"></i></div>
+          <div class="card-label">AI</div>
+          <div class="card-title">智能报告生成</div>
+          <div class="card-shape"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Introduction Section (Light) ====== -->
+  <section class="intro-section" id="intro">
+    <div class="section-inner">
+      <div class="intro-grid">
+        <div class="intro-left">
+          <div class="section-tag">INTRODUCTION</div>
+          <h2 class="intro-title">
+            企业证书安全管理<br>
+            <span class="highlight">从被动响应到主动感知</span>
+          </h2>
+        </div>
+        <div class="intro-right">
+          <p class="intro-text">
+            在数字化转型加速的今天，企业内网往往部署着数百甚至数千个 HTTPS 服务。自签名证书、过期证书、弱密钥算法、不安全的 TLS 配置——这些隐藏的风险随时可能导致业务中断或安全事件。
+          </p>
+          <p class="intro-text">
+            证链智审通过被动流量分析与主动域名探测的双轨引擎，配合 AI 智能报告生成，为企业提供全方位的证书安全态势感知能力。
+          </p>
+          <div class="intro-stats">
+            <div class="stat-item">
+              <span class="stat-num">4</span>
+              <span class="stat-label">核心分析引擎</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">11+</span>
+              <span class="stat-label">密码学检测指标</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">10+</span>
+              <span class="stat-label">HTTP安全响应头</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Feature Cards Section (Dark) ====== -->
+  <section class="feature-scroll-section" id="features">
+    <div class="feature-scroll-inner">
+      <div class="section-tag center">CORE FEATURES</div>
+      <h2 class="section-title center" style="color:#A8C4D8;">三大核心能力</h2>
+
+      <div class="cards-stage" id="cardsStage">
+        <div class="stacked-card card-cert" data-index="0">
+          <div class="card-face">
+            <div class="face-icon"><i class="fas fa-certificate"></i></div>
+            <div class="face-label">CERTIFICATE ANALYSIS</div>
+            <div class="face-title">证书流量分析</div>
+            <p class="face-desc">从 PCAP 网络流量中批量提取 TLS 证书，分析算法分布、密钥强度、有效期趋势与签发机构图谱</p>
+            <ul class="face-list">
+              <li>PCAP 批量证书提取</li>
+              <li>RSA / ECDSA 分布统计</li>
+              <li>密钥长度安全性评估</li>
+              <li>证书有效期趋势分析</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="stacked-card card-sec" data-index="1">
+          <div class="card-face">
+            <div class="face-icon"><i class="fas fa-lock"></i></div>
+            <div class="face-label">SECURITY SCANNING</div>
+            <div class="face-title">域名安全扫描</div>
+            <p class="face-desc">主动探测域名证书链信任状态，检测自签名、过期、弱密钥及 HTTP 安全响应头合规性</p>
+            <ul class="face-list">
+              <li>证书信任链验证</li>
+              <li>自签名证书检测</li>
+              <li>HSTS / CSP 合规检测</li>
+              <li>多维度安全综合评分</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="stacked-card card-ai" data-index="2">
+          <div class="card-face">
+            <div class="face-icon"><i class="fas fa-brain"></i></div>
+            <div class="face-label">AI REPORTING</div>
+            <div class="face-title">智能报告生成</div>
+            <p class="face-desc">DeepSeek AI 自动生成安全态势分析报告，Markdown / HTML 双格式输出，含风险定级与运维建议</p>
+            <ul class="face-list">
+              <li>AI 自动分析报告</li>
+              <li>Markdown / HTML 输出</li>
+              <li>异步任务队列</li>
+              <li>历史报告回溯下载</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Workflow Section (Light) ====== -->
+  <section class="workflow-section" id="workflow">
+    <div class="section-inner">
+      <div class="section-tag center">WORKFLOW</div>
+      <h2 class="section-title center">四步完成安全态势感知</h2>
+      <div class="workflow-grid">
+        <div class="wf-step" data-step="1">
+          <div class="wf-num">01</div>
+          <div class="wf-icon"><i class="fas fa-upload"></i></div>
+          <h3 class="wf-title">上传 / 输入</h3>
+          <p class="wf-desc">上传 PCAP 网络流量文件，或直接输入待检测的域名列表</p>
+        </div>
+        <div class="wf-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="wf-step" data-step="2">
+          <div class="wf-num">02</div>
+          <div class="wf-icon"><i class="fas fa-cogs"></i></div>
+          <h3 class="wf-title">解析 / 扫描</h3>
+          <p class="wf-desc">系统自动提取 TLS 证书或主动探测域名安全状态</p>
+        </div>
+        <div class="wf-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="wf-step" data-step="3">
+          <div class="wf-num">03</div>
+          <div class="wf-icon"><i class="fas fa-chart-line"></i></div>
+          <h3 class="wf-title">分析 / 评估</h3>
+          <p class="wf-desc">证书链验证 + HTTP 安全检测 + AI 风险评分</p>
+        </div>
+        <div class="wf-arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="wf-step" data-step="4">
+          <div class="wf-num">04</div>
+          <div class="wf-icon"><i class="fas fa-file-alt"></i></div>
+          <h3 class="wf-title">报告 / 输出</h3>
+          <p class="wf-desc">AI 生成安全态势报告，支持下载与历史查阅</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Tech Architecture Section (Dark) ====== -->
+  <section class="tech-section" id="tech">
+    <div class="section-inner">
+      <div class="section-tag center" style="color:#5A9EBA;">TECHNOLOGY</div>
+      <h2 class="section-title center" style="color:#A8C4D8;">双轨引擎驱动，多维分析融合</h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fas fa-random"></i></div>
+          <h3 class="tech-title">双轨分析引擎</h3>
+          <p class="tech-desc">被动流量分析 + 主动域名探测，覆盖内网 Shadow IT 与外部服务全场景</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fas fa-database"></i></div>
+          <h3 class="tech-title">资产化数据管理</h3>
+          <p class="tech-desc">SQLite 数据库持久化存储证书资产与安全分析结果，支持历史趋势回溯</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fas fa-tasks"></i></div>
+          <h3 class="tech-title">异步任务队列</h3>
+          <p class="tech-desc">大文件 PCAP 解析与 AI 报告异步执行，不阻塞前端，实时状态推送</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fas fa-star-half-alt"></i></div>
+          <h3 class="tech-title">多维评分体系</h3>
+          <p class="tech-desc">证书有效性 x 链信任 x HTTP 安全头 x 密钥强度，综合安全评分</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fas fa-chart-pie"></i></div>
+          <h3 class="tech-title">可视化仪表板</h3>
+          <p class="tech-desc">ECharts 图表展示证书分布、过期趋势、安全等级等多维度统计</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon"><i class="fas fa-robot"></i></div>
+          <h3 class="tech-title">AI 深度分析</h3>
+          <p class="tech-desc">DeepSeek 大模型驱动，自动生成安全态势报告与运维决策建议</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Scenarios Section (Light) ====== -->
+  <section class="scenario-section" id="scenarios">
+    <div class="section-inner">
+      <div class="section-tag center">SCENARIOS</div>
+      <h2 class="section-title center">适用场景</h2>
+      <div class="scenario-grid">
+        <div class="scenario-card">
+          <div class="scen-icon"><i class="fas fa-user-shield"></i></div>
+          <h3 class="scen-title">企业安全运维</h3>
+          <p class="scen-desc">定期检查内网 HTTPS 服务证书健康度，预防过期导致的业务中断事故</p>
+        </div>
+        <div class="scenario-card">
+          <div class="scen-icon"><i class="fas fa-clipboard-check"></i></div>
+          <h3 class="scen-title">等保合规审计</h3>
+          <p class="scen-desc">批量检测 Web 服务 TLS 配置是否符合等保 2.0 要求，输出合规报告</p>
+        </div>
+        <div class="scenario-card">
+          <div class="scen-icon"><i class="fas fa-bug"></i></div>
+          <h3 class="scen-title">渗透测试辅助</h3>
+          <p class="scen-desc">快速发现目标域名证书配置缺陷，作为攻击面分析与风险评估辅助工具</p>
+        </div>
+        <div class="scenario-card">
+          <div class="scen-icon"><i class="fas fa-code-branch"></i></div>
+          <h3 class="scen-title">DevOps 集成</h3>
+          <p class="scen-desc">在 CI/CD 流程中集成证书安全基线检查，阻断不合规部署</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA Footer ====== -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <h2 class="cta-title">开始保护您的数字证书资产</h2>
+      <p class="cta-desc">立即体验证链智审，全面掌握证书安全态势</p>
+      <div class="cta-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Flask</span>
+        <span class="tech-tag">SQLite</span>
+        <span class="tech-tag">Scapy</span>
+        <span class="tech-tag">DeepSeek AI</span>
+        <span class="tech-tag">ECharts</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-brand"><i class="fas fa-shield-alt"></i> 证链智审</span>
+      <span class="footer-copy">Digital Certificate Security Situational Awareness System</span>
+    </div>
+  </footer>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ===== 导航栏滚动效果 =====
+  const nav = document.getElementById('topNav');
+  ScrollTrigger.create({
+    start: 'top -80',
+    onUpdate: (self) => {
+      if (self.direction === 1 && self.progress > 0) {
+        nav.classList.add('scrolled');
+      } else if (self.progress === 0) {
+        nav.classList.remove('scrolled');
+      }
+    }
+  });
+
+  // ===== Hero 入场动画 =====
+  gsap.from('.hero-label', { opacity: 0, y: 30, duration: 0.8, delay: 0.2, ease: 'power2.out' });
+  gsap.from('.hero-title .line', { 
+    opacity: 0, y: 60, duration: 1, stagger: 0.15, delay: 0.4, ease: 'power2.out' 
+  });
+  gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 0.8, delay: 0.8, ease: 'power2.out' });
+  gsap.from('.hero-card', { 
+    opacity: 0, y: 80, scale: 0.9, duration: 1, stagger: 0.15, delay: 1, ease: 'power2.out' 
+  });
+
+  // ===== Hero 卡片 → 向下滑出 =====
+  gsap.to('#heroCards', {
+    y: -300,
+    opacity: 0,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero-section',
+      start: 'top top',
+      end: '+=400',
+      scrub: 1,
+    }
+  });
+
+  // ===== Introduction Section 动画 =====
+  gsap.fromTo('.intro-left', 
+    { opacity: 0, x: -60 },
+    { opacity: 1, x: 0, duration: 1,
+      scrollTrigger: { trigger: '.intro-section', start: 'top 75%', toggleActions: 'play none none none' }
+    }
+  );
+  gsap.fromTo('.intro-right',
+    { opacity: 0, x: 60 },
+    { opacity: 1, x: 0, duration: 1, delay: 0.2,
+      scrollTrigger: { trigger: '.intro-section', start: 'top 75%', toggleActions: 'play none none none' }
+    }
+  );
+  gsap.fromTo('.stat-item',
+    { opacity: 0, y: 30 },
+    { opacity: 1, y: 0, stagger: 0.1, duration: 0.6,
+      scrollTrigger: { trigger: '.intro-stats', start: 'top 85%', toggleActions: 'play none none none' }
+    }
+  );
+
+  // ===== Feature Cards - 初始叠放，滚动展开 =====
+  const stackedCards = gsap.utils.toArray('.stacked-card');
+
+  // 滚动时从叠放位置向两侧展开
+  ScrollTrigger.create({
+    trigger: '.feature-scroll-section',
+    start: 'top 60%',
+    end: 'center center',
+    scrub: 1,
+    onUpdate: (self) => {
+      const p = self.progress;
+      stackedCards.forEach((card, i) => {
+        const spread = p * (i - 1) * 340;
+        const rot = (1 - p) * (i - 1) * 4;
+        gsap.set(card, { x: spread, rotation: rot });
+      });
+    }
+  });
+
+  // ===== Workflow Section 动画 =====
+  gsap.fromTo('.wf-step', 
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0, stagger: 0.2, duration: 0.8,
+      scrollTrigger: { trigger: '.workflow-section', start: 'top 75%', toggleActions: 'play none none none' }
+    }
+  );
+  gsap.fromTo('.wf-arrow', 
+    { opacity: 0, x: -20 },
+    { opacity: 1, x: 0, stagger: 0.2, duration: 0.5, delay: 0.3,
+      scrollTrigger: { trigger: '.workflow-section', start: 'top 75%', toggleActions: 'play none none none' }
+    }
+  );
+
+  // ===== Tech Section 动画 =====
+  gsap.fromTo('.tech-card', 
+    { opacity: 0, y: 60 },
+    { opacity: 1, y: 0, stagger: 0.12, duration: 0.7,
+      scrollTrigger: { trigger: '.tech-section', start: 'top 75%', toggleActions: 'play none none none' }
+    }
+  );
+
+  // ===== Scenario Section 动画 =====
+  gsap.fromTo('.scenario-card', 
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0, stagger: 0.15, duration: 0.7,
+      scrollTrigger: { trigger: '.scenario-section', start: 'top 75%', toggleActions: 'play none none none' }
+    }
+  );
+
+  // ===== CTA Section 动画 =====
+  gsap.fromTo('.cta-title, .cta-desc, .cta-tech', 
+    { opacity: 0, y: 40 },
+    { opacity: 1, y: 0, stagger: 0.15, duration: 0.8,
+      scrollTrigger: { trigger: '.cta-section', start: 'top 80%', toggleActions: 'play none none none' }
+    }
+  );
+
+  // ===== 平滑滚动 =====
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+  </script>
+</body>
+</html>

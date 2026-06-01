@@ -1,0 +1,116 @@
+{
+  "total_certificates": 3,
+  "valid_certificates": 2,
+  "expiring_soon_certificates": 1,
+  "expired_certificates": 0,
+  "crypto_stats": {
+    "RSA:2048(强)": 2,
+    "RSA:1024(中等)": 1
+  },
+  "san_stats": {
+    "with_san": 1,
+    "wildcard": 0,
+    "domain_counts": {
+      "0": 2,
+      "19": 1
+    }
+  },
+  "ca_stats": {
+    "commonName=HTTPS-Self-Signed-Certificate-d8cedc5482aa3891": 1,
+    "countryName=CN, organizationName=DFL_PV_NISSAN_CA, commonName=DFL_PV_NISSAN Sub CA": 1,
+    "countryName=US, organizationName=DigiCert Inc, commonName=DigiCert TLS RSA SHA256 2020 CA1": 1
+  },
+  "key_usage_stats": {
+    "Digital Signature": 2,
+    "Key Encipherment": 2,
+    "Data Encipherment": 1
+  },
+  "parse_errors": 0,
+  "cert_details": [
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_16.der",
+      "cert_hash": "0ac52664c217952ac154309b653edb869cd87da17f7938f21c63686f2a4c357e",
+      "subject": "commonName=HTTPS-Self-Signed-Certificate-d8cedc5482aa3891",
+      "issuer": "commonName=HTTPS-Self-Signed-Certificate-d8cedc5482aa3891",
+      "not_before": "2023-05-22T16:46:17",
+      "not_after": "2043-05-17T16:46:17",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 6211,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [],
+      "serial_number": 0,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_19_6.der",
+      "cert_hash": "fb8667deca8ee516dd63b123bf0c14c0b999db8f99c939ad9fb34d332df0583d",
+      "subject": "countryName=CN, organizationName=DFL_PV_NISSAN, organizationName=NISSAN, organizationalUnitName=APP, commonName=1e8313bc688d4a2f8a2919ea2c97e22a_Android_1747960374750",
+      "issuer": "countryName=CN, organizationName=DFL_PV_NISSAN_CA, commonName=DFL_PV_NISSAN Sub CA",
+      "not_before": "2025-05-23T00:12:54",
+      "not_after": "2026-05-23T00:32:54",
+      "is_expired": false,
+      "is_expiring_soon": true,
+      "days_remaining": 8,
+      "crypto_strength": "RSA:1024(中等)",
+      "san_domains": [],
+      "has_san": false,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment",
+        "Data Encipherment"
+      ],
+      "serial_number": 7538321980217283067,
+      "version": "v3"
+    },
+    {
+      "file_path": "D:\\PythonTest\\Digital Certificate\\cert V4\\cert_analysis\\temp_certs\\cert_20_4.der",
+      "cert_hash": "761203bedd528fa32d069cd1d86d964e46fa4bb5cc70ccfb779fcf67c652d211",
+      "subject": "countryName=CH, stateOrProvinceName=Vaud, localityName=LAbbaye, organizationName=Montres Breguet SA, commonName=www.breguet.com",
+      "issuer": "countryName=US, organizationName=DigiCert Inc, commonName=DigiCert TLS RSA SHA256 2020 CA1",
+      "not_before": "2025-08-20T00:00:00",
+      "not_after": "2026-09-20T23:59:59",
+      "is_expired": false,
+      "is_expiring_soon": false,
+      "days_remaining": 129,
+      "crypto_strength": "RSA:2048(强)",
+      "san_domains": [
+        "www.breguet.com",
+        "breguet.com",
+        "catalogue.breguet.com",
+        "classique5345.breguet.cn",
+        "classique5345.breguet.com",
+        "france.breguet.com",
+        "identity.breguet.com",
+        "library.breguet.com",
+        "maps-mkt.breguet.com",
+        "marine.breguet.com",
+        "marketing-backend.breguet.com",
+        "marketing.breguet.com",
+        "press.breguet.com",
+        "qr.breguet.com",
+        "ris.breguet.com",
+        "store.breguet.cn",
+        "store.breguet.com",
+        "vdp.breguet.com",
+        "www.breguet.cn"
+      ],
+      "has_san": true,
+      "has_wildcard": false,
+      "key_usage": [
+        "Digital Signature",
+        "Key Encipherment"
+      ],
+      "serial_number": 330487416106782748282375632531028504869,
+      "version": "v3"
+    }
+  ],
+  "total_before_deduplication": 109,
+  "valid_percentage": 66.7,
+  "expiring_percentage": 33.3,
+  "expired_percentage": 0.0
+}

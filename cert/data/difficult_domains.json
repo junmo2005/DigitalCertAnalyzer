@@ -1,0 +1,42 @@
+{
+  "domains": [
+    "twimg.com",
+    "instagram.com",
+    "discord.gg",
+    "superyou.zapto.org",
+    "telegram.org",
+    "twitter.com",
+    "google.com",
+    "youtube.com",
+    "whatsapp.com",
+    "facebook.com",
+    "discord.com",
+    "googleapis.com",
+    "ws.chatgpt.com",
+    "ytimg.com",
+    "t.co",
+    "dns.msftncsi.com",
+    "tracker.moxing.party",
+    "frontier100-toutiao-hl.fqnovel.com",
+    "fbcdn.net",
+    "gmail.com",
+    "nexus-websocket-a.intercom.io",
+    "control.mna.qq.com",
+    "tqos.anticheatexpert.com"
+  ],
+  "patterns": [
+    ".zapto.org",
+    ".moxing.party",
+    ".intercom.io",
+    ".fqnovel.com",
+    ".google.com",
+    ".googleapis.com",
+    ".gmail.com",
+    ".youtube.com",
+    ".facebook.com",
+    ".twitter.com",
+    ".telegram.org"
+  ],
+  "last_updated": "2026-05-15T20:08:50.975179",
+  "total_count": 23
+}

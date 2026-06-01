@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理者仪表板 - 证链智审</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- 独立调用 dashboard.css，不再依赖 style.css -->
+  <link href="{{ url_for('static', filename='css/dashboard.css') }}" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <!-- 引入 marked.js 用于 Markdown 解析 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+</head>
+<body class="light-theme">
+
+  <nav class="navbar">
+    <div class="container">
+      <a class="nav-brand" href="{{ url_for('index') }}">
+        <span class="brand-icon"><i class="fas fa-shield-alt"></i></span> 证链智审
+      </a>
+      <ul class="nav-links">
+        <li><a class="active"><i class="fas fa-chart-line"></i>仪表板</a></li>
+      </ul>
+      <div class="dash-actions">
+        <a class="btn" href="{{ url_for('index', force_home='1') }}" style="padding:0.5rem 1rem;font-size:0.85rem;">
+          <i class="fas fa-home"></i> 退出
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="dashboard-body">
+    <div class="dash-header">
+      <div class="container">
+        <div class="dash-title"><i class="fas fa-chart-line" style="color:#3A7D9E;"></i> 管理者视图</div>
+        <div class="live-pill"><span class="live-dot"></span>实时监控中</div>
+      </div>
+    </div>
+
+    {% raw %}
+    <div class="container" id="app">
+      <!-- Row 1 -->
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="stat-card-3d">
+            <h6>活跃证书总数</h6>
+            <div class="stat-number">{{ stats.certificate.total_active }}</div>
+            <small>最近90天出现的证书</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d danger">
+            <h6>过期证书占比</h6>
+            <div class="stat-number" style="color:#B85A5A;">{{ stats.certificate.expired_ratio }}%</div>
+            <small style="color:#B85A5A;">已过期但仍可能在使用</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d warning">
+            <h6>30天内到期证书</h6>
+            <div class="stat-number" style="color:#B8965A;">{{ stats.certificate.expire_30d }}</div>
+            <small style="color:#B8965A;">需紧急续期</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d danger">
+            <h6>7天内到期证书</h6>
+            <div class="stat-number" style="color:#B85A5A;">{{ stats.certificate.expire_7d }}</div>
+            <small style="color:#B85A5A;">立即续期</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="stat-card-3d">
+            <h6>平均证书有效期</h6>
+            <div class="stat-number">{{ stats.certificate.avg_valid_days }}<span style="font-size:0.9rem;font-weight:500;">天</span></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d warning">
+            <h6>自签名证书占比</h6>
+            <div class="stat-number" style="color:#B8965A;">{{ stats.certificate.self_signed_ratio }}%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d warning">
+            <h6>弱加密证书占比</h6>
+            <div class="stat-number" style="color:#B8965A;">{{ stats.certificate.weak_crypto_ratio }}%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d danger">
+            <h6>影子证书数量</h6>
+            <div class="stat-number" style="color:#B85A5A;">{{ stats.certificate.unauthorized }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="stat-card-3d">
+            <h6>缺少密钥用途</h6>
+            <div class="stat-number">{{ stats.certificate.missing_key_usage_ratio }}%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d success">
+            <h6>SAN域名覆盖</h6>
+            <div class="stat-number" style="color:#5A9E7A;">{{ stats.certificate.with_san_ratio }}%</div>
+            <small>平均{{ stats.certificate.avg_san_domains }}个/证书</small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d">
+            <h6>免费CA使用率</h6>
+            <div class="stat-number">{{ stats.certificate.free_ca_share }}%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d warning">
+            <h6>多CA域名</h6>
+            <div class="stat-number" style="color:#B8965A;">{{ stats.certificate.multi_issuer_domains }}</div>
+            <small>供应商碎片化风险</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="stat-card-3d success">
+            <h6>域名HTTPS强制率</h6>
+            <div class="stat-number" style="color:#5A9E7A;">{{ domainHttpsPct }}%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d success">
+            <h6>HSTS启用率</h6>
+            <div class="stat-number" style="color:#5A9E7A;">{{ domainHstsPct }}%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d">
+            <h6>四头齐全率</h6>
+            <div class="stat-number">{{ domainAll4Pct }}%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card-3d success">
+            <h6>证书链完整性</h6>
+            <div class="stat-number" style="color:#5A9E7A;">{{ domainChainPct }}%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row 1 -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="chart-box-3d">
+            <h5>证书有效期趋势</h5>
+            <div class="chart-container" id="validityTrendChart"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="chart-box-3d">
+            <h5>密码学强度分布</h5>
+            <div class="chart-container" id="cryptoChart"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row 2 -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="chart-box-3d">
+            <h5>颁发机构TOP10</h5>
+            <div class="chart-container" id="issuerChart"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="chart-box-3d">
+            <h5>域名安全等级分布</h5>
+            <div class="chart-container" id="gradeChart"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row 3 -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="chart-box-3d">
+            <h5>密钥用途分布</h5>
+            <div class="chart-container" id="keyUsageChart"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="chart-box-3d">
+            <h5>安全头覆盖率</h5>
+            <div class="chart-container" id="headersChart"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Score Trend -->
+      <div class="row">
+        <div class="col-12">
+          <div class="chart-box-3d">
+            <h5>域名安全评分月度趋势</h5>
+            <div class="chart-container" id="scoreTrendChart" style="height:360px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Report -->
+      <div class="row">
+        <div class="col-12">
+          <div class="report-panel">
+            <h5><i class="fas fa-robot" style="color:#3A7D9E;"></i> AI 态势报告</h5>
+            <button class="btn-ai" @click="generateReport" :disabled="reportLoading">
+              <i class="fas" :class="reportLoading ? 'fa-circle-notch fa-spin' : 'fa-magic'"></i>
+              {{ reportLoading ? 'AI分析中...' : '生成今日安全态势报告' }}
+            </button>
+             <button v-if="reportContent" class="btn btn-outline-secondary ms-2" @click="copyReport">
+                <i class="fas fa-copy"></i> 复制报告
+            </button>
+            <button v-if="reportContent" class="btn btn-outline-secondary ms-2" @click="downloadReport">
+                <i class="fas fa-download"></i> 下载报告 (HTML)
+            </button>
+            <<div v-if="reportContent" class="report-container" v-html="reportContent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endraw %}
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h5 style="color:#1A2B3C;margin-bottom:0.5rem;">&copy; 2026 证链智审</h5>
+          <p style="color:#6B8299;font-size:0.875rem;">数字证书安全态势感知系统</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p style="color:#6B8299;font-size:0.875rem;">专业的数字证书安全分析平台</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+  <script>
+  (function() {
+    const lightTheme = {
+      backgroundColor: 'transparent',
+      textStyle: { color: '#6B8299' },
+      title: { textStyle: { color: '#1A2B3C' }, subtextStyle: { color: '#9BA8AB' } },
+      legend: { textStyle: { color: '#6B8299' } },
+      tooltip: {
+        backgroundColor: 'rgba(255,255,255,0.95)', borderColor: '#DDE4EA',
+        textStyle: { color: '#1A2B3C' },
+        extraCssText: 'box-shadow:0 4px 24px rgba(26,43,60,0.12);'
+      },
+      categoryAxis: {
+        axisLine: { lineStyle: { color: '#DDE4EA' } },
+        axisLabel: { color: '#6B8299' },
+        splitLine: { lineStyle: { color: 'rgba(221,228,234,0.5)' } }
+      },
+      valueAxis: {
+        axisLine: { lineStyle: { color: '#DDE4EA' } },
+        axisLabel: { color: '#6B8299' },
+        splitLine: { lineStyle: { color: 'rgba(221,228,234,0.5)' } }
+      }
+    };
+    if (window.echarts) echarts.registerTheme('light-v3', lightTheme);
+  })();
+  </script>
+</body>
+</html>

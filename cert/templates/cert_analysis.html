@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>证书分析 - 证链智审</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/cert_analysis.css') }}" rel="stylesheet">
+<base target="_blank">
+<base target="_blank">
+<base target="_blank">
+</head>
+<body class="cert-page">
+
+    <!-- ========== 底层 Three.js 粒子星云 ========== -->
+    <div id="nebula-bg" class="nebula-bg"></div>
+
+    <!-- ========== 页面内容容器 ========== -->
+    <div class="page-wrap">
+
+        <!-- 导航栏 -->
+        <nav class="top-nav" id="topNav">
+            <a class="nav-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-shield-alt"></i>
+                <span>证链智审</span>
+            </a>
+            <div class="nav-menu">
+                <a href="{{ url_for('index', force_home='1') }}"><i class="fas fa-home"></i> 退出</a>
+                <a href="{{ url_for('system_intro') }}"><i class="fas fa-info-circle"></i> 介绍</a>
+                <a href="{{ url_for('cert_analysis') }}"><i class="fas fa-file-certificate me-1"></i> 证书分析</a>
+                <a href="{{ url_for('security_analysis') }}"><i class="fas fa-lock"></i> 安全分析</a>
+            </div>
+        </nav>
+
+        <!-- ======== HERO 区域 ======== -->
+        <header class="hero" id="hero">
+            <div class="hero-inner">
+                <h1 class="hero-title" id="heroTitle">证书分析</h1>
+                <p class="hero-sub">数字证书安全态势感知 · 深度解析 · 全面评估</p>
+                <div class="hero-tags">
+                    <span><i class="fas fa-network-wired"></i> PCAP抓包</span>
+                    <span><i class="fas fa-layer-group"></i> 批量分析</span>
+                    <span><i class="fas fa-file-archive"></i> 压缩包</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ======== 3D 棱镜控制台 ======== -->
+        <section class="console-sec" id="consoleSec">
+            <div class="sec-header">
+                <span class="sec-num">01</span>
+                <span class="sec-name">分析控制台</span>
+            </div>
+
+            <div class="prism-box">
+                <div class="prism" id="prism">
+                    <!-- 前面：PCAP -->
+                    <div class="prism-face face-front" data-mode="pcap">
+                        <div class="face-glass">
+                            <div class="face-icon"><i class="fas fa-network-wired"></i></div>
+                            <h3>PCAP 抓包分析</h3>
+                            <p>从网络抓包中提取 TLS/SSL 证书</p>
+                            <div class="upload-box">
+                                <div class="drop-zone" id="pcapDrop">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>拖放或点击上传 PCAP</span>
+                                    <small>.pcap  .pcapng</small>
+                                </div>
+                                <input type="file" id="pcapFile" accept=".pcap,.pcapng" hidden>
+                                <div class="file-name" id="pcapName"></div>
+                                <!-- 发光球体加载 -->
+                                <div class="glow-loader" id="pcapLoader" style="display:none">
+                                    <div class="glow-ball ball-a"></div>
+                                    <div class="glow-ball ball-b"></div>
+                                    <div class="glow-ball ball-c"></div>
+                                </div>
+                                <button class="action-btn" onclick="uploadPcap()">
+                                    <i class="fas fa-play"></i> 开始分析
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 右面：批量 -->
+                    <div class="prism-face face-right" data-mode="batch">
+                        <div class="face-glass">
+                            <div class="face-icon"><i class="fas fa-layer-group"></i></div>
+                            <h3>批量证书分析</h3>
+                            <p>同时处理多个证书文件</p>
+                            <div class="upload-box">
+                                <div class="drop-zone" id="batchDrop">
+                                    <i class="fas fa-copy"></i>
+                                    <span>选择多个证书文件</span>
+                                    <small>.cer .crt .pem .der</small>
+                                </div>
+                                <input type="file" id="batchFiles" accept=".cer,.crt,.pem,.der" multiple hidden>
+                                <div class="batch-list" id="batchList"></div>
+                                <div class="file-name" id="batchName"></div>
+                                <!-- 发光球体加载 -->
+                                <div class="glow-loader" id="batchLoader" style="display:none">
+                                    <div class="glow-ball ball-a"></div>
+                                    <div class="glow-ball ball-b"></div>
+                                    <div class="glow-ball ball-c"></div>
+                                </div>
+                                <button class="action-btn" onclick="uploadBatch()">
+                                    <i class="fas fa-play"></i> 批量分析
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 左面：压缩包 -->
+                    <div class="prism-face face-left" data-mode="zip">
+                        <div class="face-glass">
+                            <div class="face-icon"><i class="fas fa-file-archive"></i></div>
+                            <h3>压缩包分析</h3>
+                            <p>自动解压并提取证书</p>
+                            <div class="upload-box">
+                                <div class="drop-zone" id="zipDrop">
+                                    <i class="fas fa-archive"></i>
+                                    <span>上传压缩包</span>
+                                    <small>.zip .rar .7z</small>
+                                </div>
+                                <input type="file" id="zipFile" accept=".zip,.rar,.7z" hidden>
+                                <div class="file-name" id="zipName"></div>
+                                <!-- 发光球体加载 -->
+                                <div class="glow-loader" id="zipLoader" style="display:none">
+                                    <div class="glow-ball ball-a"></div>
+                                    <div class="glow-ball ball-b"></div>
+                                    <div class="glow-ball ball-c"></div>
+                                </div>
+                                <button class="action-btn" onclick="uploadZip()">
+                                    <i class="fas fa-play"></i> 解压分析
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 棱镜控制点 -->
+                <div class="prism-dots">
+                    <button class="dot active" onclick="spinPrism(0)" title="PCAP"></button>
+                    <button class="dot" onclick="spinPrism(-120)" title="批量"></button>
+                    <button class="dot" onclick="spinPrism(120)" title="压缩包"></button>
+                </div>
+                <!-- 拖拽提示 -->
+                <div class="prism-hint">
+                    <i class="fas fa-hand-pointer"></i> 拖拽旋转控制台
+                </div>
+            </div>
+
+            <!-- 错误提示 -->
+            <div class="error-box" id="errorBox" style="display:none"></div>
+        </section>
+
+        <!-- ======== 结果星云区域 ======== -->
+        <section class="result-sec" id="resultSec" style="display:none">
+            <div class="sec-header">
+                <span class="sec-num">02</span>
+                <span class="sec-name">分析结果</span>
+            </div>
+
+            <!-- Tab 切换 -->
+            <div class="result-tabs">
+                <button class="rtab active" data-tab="solar">
+                    <i class="fas fa-sun"></i> 证书太阳系
+                </button>
+                <button class="rtab" data-tab="charts">
+                    <i class="fas fa-chart-pie"></i> 数据可视化
+                </button>
+                <button class="rtab" data-tab="detail">
+                    <i class="fas fa-table"></i> 详细数据
+                </button>
+                <button class="rtab" data-tab="report">
+                    <i class="fas fa-file-alt"></i> 智能报告
+                </button>
+            </div>
+
+            <!-- 面板：证书太阳系 -->
+            <div class="rpanel active" id="solarPanel">
+                <div class="solar-layout">
+                    <!-- 左侧：3D词云球 -->
+                    <div class="solar-wrap">
+                        <!-- canvas由JS动态创建 -->
+                        <!-- 行星详情弹窗 -->
+                        <div class="planet-modal" id="planetModal">
+                            <button class="modal-close" onclick="closePlanet()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="planet-detail-scroll" id="planetContent"></div>
+                        </div>
+                    </div>
+                    <!-- 右侧：统计面板 -->
+                    <div class="solar-stats-panel" id="solarStatsPanel">
+                        <div class="stats-header">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>证书统计</span>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card total">
+                                <div class="stat-icon"><i class="fas fa-fingerprint"></i></div>
+                                <div class="stat-info">
+                                    <label>唯一证书数</label>
+                                    <b id="statUnique">0</b>
+                                </div>
+                            </div>
+                            <div class="stat-card valid">
+                                <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                                <div class="stat-info">
+                                    <label>有效证书</label>
+                                    <b id="statValid">0</b>
+                                </div>
+                            </div>
+                            <div class="stat-card warn">
+                                <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="stat-info">
+                                    <label>即将过期</label>
+                                    <b id="statWarn">0</b>
+                                </div>
+                            </div>
+                            <div class="stat-card danger">
+                                <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
+                                <div class="stat-info">
+                                    <label>已过期</label>
+                                    <b id="statExpired">0</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-hint">
+                            <i class="fas fa-mouse-pointer"></i>
+                            <span>拖拽旋转球体 · 点击标签查看详情</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 面板：数据可视化 -->
+            <div class="rpanel" id="chartsPanel">
+                <div class="chart-grid">
+                    <!-- 第一行：有效期分布 + 密码学强度 -->
+                    <div class="chart-card">
+                        <div class="chart-title"><i class="fas fa-shield-alt"></i> 有效期分布</div>
+                        <canvas id="validityChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-title"><i class="fas fa-key"></i> 密码学强度</div>
+                        <canvas id="cryptoChart"></canvas>
+                    </div>
+                    <!-- 第二行：SAN域名 + 密钥用途 -->
+                    <div class="chart-card">
+                        <div class="chart-title"><i class="fas fa-globe"></i> SAN 域名</div>
+                        <canvas id="sanChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-title"><i class="fas fa-tasks"></i> 密钥用途</div>
+                        <canvas id="keyUsageChart"></canvas>
+                    </div>
+                    <!-- 第三行：颁发机构TOP10（全宽） -->
+                    <div class="chart-card wide">
+                        <div class="chart-title"><i class="fas fa-building"></i> 颁发机构 TOP10</div>
+                        <canvas id="issuerChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 面板：详细数据 -->
+            <div class="rpanel" id="detailPanel">
+                <div class="detail-box" id="detailBox"></div>
+            </div>
+
+            <!-- 面板：智能报告 -->
+            <div class="rpanel" id="reportPanel">
+                <div class="report-trigger" id="reportTrigger">
+                    <button class="action-btn btn-large" onclick="genReport()">
+                        <i class="fas fa-magic"></i> 合成智能分析报告
+                    </button>
+                </div>
+                <div class="report-output" id="reportOutput" style="display:none">
+                    <div class="report-md" id="reportMd"></div>
+                    <div class="report-btns">
+                        <button class="action-btn" onclick="dlReport()">
+                            <i class="fas fa-download"></i> 下载
+                        </button>
+                        <button class="action-btn btn-ghost" onclick="cpReport()">
+                            <i class="fas fa-copy"></i> 复制
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="site-footer">
+            <span><i class="fas fa-shield-alt"></i> 证链智审 — 数字证书安全态势感知系统</span>
+            <span class="copy"> 2026</span>
+        </footer>
+    </div>
+
+    <!-- ========== 脚本 ========== -->
+    <script src="{{ url_for('static', filename='js/three.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/all.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/marked.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cert_analysis.js') }}"></script>
+</body>
+</html>

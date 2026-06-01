@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>证链智审 - 数字证书安全态势感知系统</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+  <style>
+    /* ========== 全局覆盖 ========== */
+    html, body { margin: 0; padding: 0; overflow-x: hidden; background: #0A1628; }
+
+    /* ========== Three.js 星轨容器 ========== */
+    #three-canvas {
+      position: fixed; inset: 0;
+      z-index: 1; pointer-events: none;
+    }
+    #three-canvas canvas {
+      display: block; width: 100% !important; height: 100% !important;
+    }
+
+    /* 全局防黑色字体保护 */
+    body.dark-theme { color-scheme: dark; }
+    body.dark-theme input,
+    body.dark-theme select,
+    body.dark-theme textarea {
+      color: #A8C4D8;
+    }
+    body.dark-theme input::placeholder,
+    body.dark-theme select option {
+      color: #4A5C6A;
+    }
+    body.dark-theme select option {
+      background: #162536;
+      color: #A8C4D8;
+    }
+    body.dark-theme a { color: #5A9EBA; }
+    body.dark-theme a:hover { color: #A8C4D8; }
+
+    /* ========== 流星拖尾画布 ========== */
+    #meteor-canvas {
+      position: fixed; inset: 0;
+      z-index: 2; pointer-events: none;
+    }
+
+    /* ========== 开场遮罩层（撕裂幕布） ========== */
+    .curtain {
+      position: fixed; inset: 0; z-index: 100;
+      pointer-events: none;
+    }
+    .curtain-top, .curtain-bottom {
+      position: fixed; left: 0; right: 0;
+      background: #0A1628;
+      overflow: hidden;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .curtain-top    { top: 0; height: 50vh; transform: translateY(0); }
+    .curtain-bottom { bottom: 0; height: 50vh; transform: translateY(0); }
+
+    /* 撕裂缝 */
+    .curtain-top::after, .curtain-bottom::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(90,158,186,0.6) 30%, rgba(90,158,186,0.9) 50%, rgba(90,158,186,0.6) 70%, transparent 100%);
+      box-shadow: 0 0 20px rgba(90,158,186,0.5), 0 0 60px rgba(90,158,186,0.2);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .curtain-top::after    { bottom: 0; }
+    .curtain-bottom::after { top: 0; }
+
+    /* 撕裂激活态 */
+    .curtain.torn .curtain-top    { transform: translateY(-100%); }
+    .curtain.torn .curtain-bottom { transform: translateY(100%); }
+    .curtain.torn .curtain-top::after,
+    .curtain.torn .curtain-bottom::after { opacity: 1; }
+
+    /* ========== 开场分裂文字 — 数字化切割错位3D立体风格 ========== */
+    .tear-text-top, .tear-text-bottom {
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+      font-family: 'Orbitron', 'Rajdhani', 'Inter', sans-serif;
+      font-size: 7rem; font-weight: 900;
+      letter-spacing: 0.15em; line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      color: transparent;
+    }
+    .tear-text-top { bottom: 0; height: 0.5em; }
+    .tear-text-bottom { top: 0; height: 0.5em; }
+
+    .tear-txt {
+      display: block;
+      transform: skewX(-12deg);
+      background: linear-gradient(180deg, #F0F8FF 0%, #D6ECF8 15%, #B0D8EC 35%, #8AC4E0 55%, #5A9EBA 80%, #3A7D9E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      -webkit-text-stroke: 1.5px rgba(190,230,255,0.6);
+      text-shadow:
+        1px 1px 0 rgba(18,50,75,0.95), 2px 2px 0 rgba(16,47,72,0.92), 3px 3px 0 rgba(14,44,69,0.89),
+        4px 4px 0 rgba(12,41,66,0.86), 5px 5px 0 rgba(10,38,63,0.83), 6px 6px 0 rgba(8,35,60,0.80),
+        7px 7px 0 rgba(6,32,57,0.77), 8px 8px 0 rgba(4,29,54,0.74), 9px 9px 0 rgba(2,26,51,0.71),
+        10px 10px 0 rgba(0,23,48,0.68), 11px 11px 0 rgba(0,20,45,0.65), 12px 12px 0 rgba(0,17,42,0.62),
+        0 0 8px rgba(168,216,255,0.5), 0 0 20px rgba(90,180,255,0.25), 0 0 40px rgba(60,160,255,0.1);
+    }
+    .tear-text-bottom .tear-txt { margin-top: -0.5em; }
+
+    /* 数字化切割线 — 模拟笔画被程序切断 */
+    .digit-cut {
+      position: absolute;
+      height: 3px;
+      background: #0A1628;
+      z-index: 2;
+      border-radius: 1px;
+      box-shadow: 0 0 0 1px #0A1628;
+    }
+    .tear-text-top .cut-1 { left: 6%;  width: 20%; top: 22%; }
+    .tear-text-top .cut-2 { left: 30%; width: 16%; top: 35%; }
+    .tear-text-top .cut-3 { left: 52%; width: 22%; top: 28%; }
+    .tear-text-top .cut-4 { left: 18%; width: 14%; top: 42%; }
+    .tear-text-top .cut-5 { left: 74%; width: 16%; top: 38%; }
+    .tear-text-bottom .cut-1 { left: 10%; width: 18%; top: 15%; }
+    .tear-text-bottom .cut-2 { left: 36%; width: 14%; top: 32%; }
+    .tear-text-bottom .cut-3 { left: 56%; width: 20%; top: 25%; }
+    .tear-text-bottom .cut-4 { left: 22%; width: 16%; top: 48%; }
+    .tear-text-bottom .cut-5 { left: 70%; width: 14%; top: 42%; }
+
+    /* 电光脉冲 — 冷白流光环绕 */
+    @keyframes electricGlow {
+      0%, 100% {
+        -webkit-text-stroke: 1.5px rgba(190,230,255,0.5);
+        text-shadow:
+          1px 1px 0 rgba(18,50,75,0.95), 2px 2px 0 rgba(16,47,72,0.92), 3px 3px 0 rgba(14,44,69,0.89),
+          4px 4px 0 rgba(12,41,66,0.86), 5px 5px 0 rgba(10,38,63,0.83), 6px 6px 0 rgba(8,35,60,0.80),
+          7px 7px 0 rgba(6,32,57,0.77), 8px 8px 0 rgba(4,29,54,0.74), 9px 9px 0 rgba(2,26,51,0.71),
+          10px 10px 0 rgba(0,23,48,0.68), 11px 11px 0 rgba(0,20,45,0.65), 12px 12px 0 rgba(0,17,42,0.62),
+          0 0 8px rgba(168,216,255,0.5), 0 0 20px rgba(90,180,255,0.25), 0 0 40px rgba(60,160,255,0.1);
+      }
+      50% {
+        -webkit-text-stroke: 2.5px rgba(140,220,255,0.9);
+        text-shadow:
+          1px 1px 0 rgba(18,50,75,0.95), 2px 2px 0 rgba(16,47,72,0.92), 3px 3px 0 rgba(14,44,69,0.89),
+          4px 4px 0 rgba(12,41,66,0.86), 5px 5px 0 rgba(10,38,63,0.83), 6px 6px 0 rgba(8,35,60,0.80),
+          7px 7px 0 rgba(6,32,57,0.77), 8px 8px 0 rgba(4,29,54,0.74), 9px 9px 0 rgba(2,26,51,0.71),
+          10px 10px 0 rgba(0,23,48,0.68), 11px 11px 0 rgba(0,20,45,0.65), 12px 12px 0 rgba(0,17,42,0.62),
+          0 0 12px rgba(168,216,255,0.9), 0 0 30px rgba(90,200,255,0.6), 0 0 60px rgba(60,180,255,0.3), 0 0 100px rgba(40,160,255,0.12);
+      }
+    }
+    .glow-active .tear-txt {
+      animation: electricGlow 2.5s ease-in-out infinite;
+    }
+
+    /* ========== 电流闪电划过特效 ========== */
+    .electric-current {
+      position: absolute;
+      left: -30%; top: 50%;
+      width: 160%; height: 120px;
+      transform: translateY(-50%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 102;
+    }
+    .electric-current::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(80,200,255,0.7), rgba(180,245,255,1), rgba(80,200,255,0.7), transparent);
+      clip-path: polygon(
+        -5% 48%, 8% 30%, 12% 52%, 18% 25%, 24% 55%, 32% 22%, 40% 58%, 48% 28%, 56% 52%, 64% 32%,
+        72% 50%, 80% 35%, 88% 48%, 96% 42%, 105% 45%, 105% 55%, 96% 58%, 88% 55%, 80% 65%, 72% 54%,
+        64% 68%, 56% 58%, 48% 72%, 40% 62%, 32% 78%, 24% 65%, 18% 75%, 12% 60%, 8% 70%, -5% 52%
+      );
+      filter: blur(1px) brightness(1.3);
+    }
+    .electric-current::after {
+      content: '';
+      position: absolute; inset: -20px;
+      background: linear-gradient(90deg, transparent, rgba(60,180,255,0.4), rgba(140,230,255,0.6), rgba(60,180,255,0.4), transparent);
+      clip-path: polygon(
+        -5% 48%, 8% 30%, 12% 52%, 18% 25%, 24% 55%, 32% 22%, 40% 58%, 48% 28%, 56% 52%, 64% 32%,
+        72% 50%, 80% 35%, 88% 48%, 96% 42%, 105% 45%, 105% 55%, 96% 58%, 88% 55%, 80% 65%, 72% 54%,
+        64% 68%, 56% 58%, 48% 72%, 40% 62%, 32% 78%, 24% 65%, 18% 75%, 12% 60%, 8% 70%, -5% 52%
+      );
+      filter: blur(12px);
+      opacity: 0.7;
+    }
+    @keyframes currentSweep {
+      0%   { left: -30%; opacity: 0; }
+      15%  { opacity: 1; }
+      50%  { opacity: 1; }
+      85%  { opacity: 1; }
+      100% { left: 120%; opacity: 0; }
+    }
+    .current-active {
+      animation: currentSweep 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    /* 电流扫过后文字上下分离 */
+    .curtain.lightning-done .tear-text-top {
+      transform: translateX(-50%) translateY(-14px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .curtain.lightning-done .tear-text-bottom {
+      transform: translateX(-50%) translateY(14px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .curtain.lightning-done .tear-text-top .tear-txt,
+    .curtain.lightning-done .tear-text-bottom .tear-txt {
+      -webkit-text-stroke: 1px rgba(90,158,186,0.3);
+      text-shadow: none;
+      filter: none;
+    }
+
+    /* 扫描切痕 */
+    .scan-cut {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 10%, rgba(180,240,255,0.9) 50%, transparent 90%);
+      box-shadow: 0 0 8px rgba(140,220,255,0.8), 0 0 20px rgba(100,200,255,0.4);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .scan-cut-top    { bottom: -1px; }
+    .scan-cut-bottom { top: -1px; }
+    @keyframes scanCutFlash {
+      0%   { opacity: 0; }
+      30%  { opacity: 1; height: 2px; }
+      100% { opacity: 0; height: 1px; }
+    }
+    .lightning-done .scan-cut {
+      animation: scanCutFlash 0.5s ease-out forwards;
+    }
+
+    /* 副标题 */
+    .curtain-subtitle {
+      position: absolute; left: 50%; top: calc(50% + 4rem); transform: translateX(-50%);
+      font-family: 'Orbitron', 'Rajdhani', sans-serif;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: #5A9EBA; opacity: 0;
+      animation: fadeInUp 0.8s ease 0.5s forwards;
+      white-space: nowrap;
+    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 0.7; transform: translateX(-50%) translateY(0); } }
+
+    /* 小字 */
+    .curtain-corner-tl, .curtain-corner-tr, .curtain-corner-bl, .curtain-corner-br {
+      position: absolute; font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72rem; color: #253745; letter-spacing: 0.1em;
+    }
+    .curtain-corner-tl { top: 2rem; left: 2rem; }
+    .curtain-corner-tr { top: 2rem; right: 2rem; color: #4A5C6A; font-weight: 600; }
+    .curtain-corner-bl { bottom: 2rem; left: 2rem; }
+    .curtain-corner-br { bottom: 2rem; right: 2rem; }
+
+    /* ========== 青绿色玻璃球体（始终可见） ========== */
+    .glass-sphere {
+      position: fixed; z-index: 5;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(78,205,196,0.25) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(46,184,166,0.14) 0%, transparent 50%);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border: 1.5px solid rgba(78,205,196,0.4);
+      box-shadow:
+        inset 0 0 30px rgba(78,205,196,0.1),
+        0 0 50px rgba(78,205,196,0.2),
+        0 0 100px rgba(46,184,166,0.08),
+        inset -10px -10px 30px rgba(0,0,0,0.15);
+      animation: sphereFloat linear infinite;
+      pointer-events: none;
+    }
+    @keyframes sphereFloat {
+      0%   { transform: translateY(0) rotate(0deg); }
+      50%  { transform: translateY(-30px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+    .sphere-1 { width: 180px; height: 180px; top: 8%;  left: 5%;  animation-duration: 18s; animation-delay: 0s;   opacity: 0.75; }
+    .sphere-2 { width: 100px; height: 100px; top: 15%; right: 8%; animation-duration: 14s; animation-delay: 2s;   opacity: 0.55; }
+    .sphere-3 { width: 240px; height: 240px; bottom: 10%; left: 3%; animation-duration: 22s; animation-delay: 1s;   opacity: 0.5; }
+    .sphere-4 { width: 70px;  height: 70px;  bottom: 20%; right: 5%; animation-duration: 12s; animation-delay: 3s;   opacity: 0.65; }
+    .sphere-5 { width: 140px; height: 140px; top: 40%;   left: -2%; animation-duration: 20s; animation-delay: 0.5s; opacity: 0.45; }
+    .sphere-6 { width: 90px;  height: 90px;  top: 60%;   right: 2%; animation-duration: 16s; animation-delay: 1.5s; opacity: 0.6; }
+    .sphere-7 { width: 60px;  height: 60px;  top: 5%;    left: 40%; animation-duration: 10s; animation-delay: 2.5s; opacity: 0.65; }
+    .sphere-8 { width: 120px; height: 120px; bottom: 5%; left: 35%; animation-duration: 19s; animation-delay: 0.8s; opacity: 0.55; }
+
+    /* ========== 流星划过特效 ========== */
+    .meteor-shoot {
+      position: fixed; z-index: 4;
+      width: 4px; height: 4px; border-radius: 50%;
+      background: #A8C4D8;
+      box-shadow: 0 0 6px 2px rgba(168,196,216,0.6), 0 0 20px 4px rgba(90,158,186,0.2);
+      pointer-events: none;
+      animation: meteorShoot linear infinite;
+    }
+    .meteor-shoot::before {
+      content: ''; position: absolute; top: 50%; right: 0;
+      width: 120px; height: 2px;
+      background: linear-gradient(90deg, rgba(168,196,216,0.8), transparent);
+      transform: translateY(-50%) rotate(-35deg); transform-origin: right center;
+    }
+    @keyframes meteorShoot {
+      0%   { transform: translateX(0) translateY(0); opacity: 0; }
+      5%   { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateX(-80vw) translateY(80vh); opacity: 0; }
+    }
+
+    /* ========== 登录页（底层，始终存在） ========== */
+    .hero-fullscreen {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; background: transparent;
+    }
+    .hero-content-wrap {
+      position: relative; z-index: 3;
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: center;
+      gap: 4rem; max-width: 1200px;
+      width: 100%; padding: 2rem;
+    }
+    .brand-section { flex: 1 1 380px; max-width: 520px; }
+    .brand-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1rem; font-size: 0.78rem;
+      font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #6B8299;
+      border: 1px solid rgba(37,55,69,0.5);
+      border-radius: 999px;
+      background: rgba(22,37,54,0.4);
+      margin-bottom: 1.5rem;
+    }
+    .brand-badge .pulse-dot {
+      width: 7px; height: 7px;
+      background: #5A9EBA; border-radius: 50%;
+      box-shadow: 0 0 8px #5A9EBA;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .brand-title {
+      font-family: 'Orbitron', 'Rajdhani', 'Inter', sans-serif;
+      font-size: 3.2rem; font-weight: 800;
+      line-height: 1.15; margin-bottom: 1.25rem;
+      letter-spacing: -0.03em; color: #A8C4D8;
+    }
+    .brand-title .highlight { color: #5A9EBA; }
+    .brand-desc {
+      font-size: 1.05rem; color: #6B8299;
+      line-height: 1.8; margin-bottom: 2rem;
+    }
+    .brand-features { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    /* ========== 玻璃态认证卡 ========== */
+    .auth-card {
+      flex: 1 1 420px; max-width: 480px;
+      position: relative; perspective: 1200px;
+    }
+    .auth-card-inner {
+      background: linear-gradient(160deg, rgba(22,37,54,0.75) 0%, rgba(10,22,40,0.55) 100%);
+      backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(37,55,69,0.45);
+      border-radius: 20px;
+      padding: 2.5rem; position: relative; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(168,196,216,0.05);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s ease;
+    }
+    .auth-card-inner::before {
+      content: ''; position: absolute; inset: 0;
+      border-radius: 20px;
+      background: radial-gradient(700px circle at var(--mx,50%) var(--my,50%), rgba(90,158,186,0.12), transparent 50%);
+      opacity: 0; transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .auth-card:hover .auth-card-inner::before { opacity: 1; }
+    .auth-card:hover .auth-card-inner {
+      transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 50px rgba(90,158,186,0.1);
+    }
+    .auth-tabs { display: flex; margin-bottom: 1.8rem; border-bottom: 1px solid rgba(37,55,69,0.5); }
+    .auth-tab {
+      flex: 1; padding: 0.8rem; background: transparent; border: none;
+      color: #4A5C6A; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .auth-tab:hover { color: #6B8299; }
+    .auth-tab.active { color: #A8C4D8; border-bottom-color: #5A9EBA; }
+    .auth-form { display: none; }
+    .auth-form.active { display: block; animation: fadeUp 0.5s ease; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label {
+      display: block; margin-bottom: 0.4rem;
+      font-size: 0.82rem; font-weight: 500; color: #6B8299;
+    }
+    .btn-submit {
+      width: 100%; padding: 0.95rem; font-size: 1rem; font-weight: 700;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #5A9EBA, #3A7D9E);
+      border: none; border-radius: 12px; cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 20px rgba(90,158,186,0.25);
+      margin-top: 0.4rem;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(90,158,186,0.35);
+    }
+    .alert-msg {
+      padding: 0.75rem 1rem; border-radius: 10px;
+      margin-top: 0.8rem; font-size: 0.88rem; font-weight: 500;
+      display: flex; align-items: center; gap: 0.6rem;
+      animation: fadeUp 0.3s ease;
+    }
+    .alert-err { background: rgba(184,90,90,0.08); border: 1px solid rgba(184,90,90,0.2); color: #D4A0A0; }
+    .alert-ok { background: rgba(90,158,122,0.08); border: 1px solid rgba(90,158,122,0.2); color: #A0D4B8; }
+
+    /* ========== 动画 ========== */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+    [v-cloak] { display: none; }
+    @media (max-width: 768px) {
+      .brand-title { font-size: 2.2rem; }
+      .tear-text-top, .tear-text-bottom { font-size: 4rem; }
+      .hero-content-wrap { gap: 2rem; }
+      .sphere-3, .sphere-5, .sphere-8 { display: none; }
+    }
+  </style>
+<base target="_blank">
+<base target="_blank">
+</head>
+<body class="dark-theme">
+
+  <!-- ======== Three.js 星轨背景 ======== -->
+  <div id="three-canvas"></div>
+
+  <!-- ======== 开场遮罩层（幕布） ======== -->
+  <div class="curtain" id="curtain">
+    <!-- 上半遮罩 -->
+    <div class="curtain-top">
+      <div class="curtain-corner-tl">CERTIFICATE</div>
+      <div class="curtain-corner-tr">CHAIN AUDIT</div>
+      <div class="tear-text-top">
+        <span class="tear-txt">证链智审</span>
+        <div class="digit-cut cut-1"></div>
+        <div class="digit-cut cut-2"></div>
+        <div class="digit-cut cut-3"></div>
+        <div class="digit-cut cut-4"></div>
+        <div class="digit-cut cut-5"></div>
+        <div class="scan-cut scan-cut-top"></div>
+      </div>
+      <div class="curtain-corner-bl">INTELLIGENCE</div>
+    </div>
+    <!-- 下半遮罩 -->
+    <div class="curtain-bottom">
+      <div class="tear-text-bottom">
+        <span class="tear-txt">证链智审</span>
+        <div class="digit-cut cut-1"></div>
+        <div class="digit-cut cut-2"></div>
+        <div class="digit-cut cut-3"></div>
+        <div class="digit-cut cut-4"></div>
+        <div class="digit-cut cut-5"></div>
+        <div class="scan-cut scan-cut-bottom"></div>
+      </div>
+      <div class="curtain-corner-br">SECURITY</div>
+      <div class="curtain-subtitle">Digital Certificate Security Situational Awareness</div>
+    </div>
+    <!-- 电流闪电元素 -->
+    <div class="electric-current" id="electricCurrent"></div>
+  </div>
+
+  <!-- ======== 玻璃球体（开场阶段可见） ======== -->
+  <div class="glass-sphere sphere-1"></div>
+  <div class="glass-sphere sphere-2"></div>
+  <div class="glass-sphere sphere-3"></div>
+  <div class="glass-sphere sphere-4"></div>
+  <div class="glass-sphere sphere-5"></div>
+  <div class="glass-sphere sphere-6"></div>
+  <div class="glass-sphere sphere-7"></div>
+  <div class="glass-sphere sphere-8"></div>
+
+  <!-- ======== 流星 ======== -->
+  <div class="meteor-shoot" style="top:-5%;right:-5%;animation-duration:3s;animation-delay:0s;"></div>
+  <div class="meteor-shoot" style="top:-8%;right:15%;animation-duration:4s;animation-delay:1.2s;width:3px;height:3px;"></div>
+  <div class="meteor-shoot" style="top:-3%;right:40%;animation-duration:3.5s;animation-delay:2.5s;"></div>
+  <div class="meteor-shoot" style="top:-10%;right:60%;animation-duration:5s;animation-delay:0.8s;width:2px;height:2px;"></div>
+  <div class="meteor-shoot" style="top:-6%;right:80%;animation-duration:3.8s;animation-delay:3s;"></div>
+
+  <!-- ======== 鼠标拖尾 ======== -->
+  <canvas id="meteor-canvas"></canvas>
+
+  <!-- ======== 登录页（底层，始终渲染） ======== -->
+  <div class="hero-fullscreen">
+    <div class="hero-content-wrap">
+      <!-- 品牌区 -->
+      <div class="brand-section">
+        <div class="brand-badge">
+          <span class="pulse-dot"></span>
+          数字证书安全态势感知系统
+        </div>
+        <h1 class="brand-title">
+          <span class="highlight">证链</span>智审
+        </h1>
+        <p class="brand-desc">
+          从真实加密流量洞察证书安全态势<br>
+          <span style="color:#5A9EBA;">AI 驱动运维建议</span>，让每一次握手都值得信赖
+        </p>
+        <div class="brand-features">
+          <span class="badge badge-accent">内网证书卫生监控</span>
+          <span class="badge badge-gold">影子IT发现</span>
+          <span class="badge badge-green">合规审计助手</span>
+        </div>
+      </div>
+
+      <!-- 认证卡 -->
+      {% raw %}
+      <div class="auth-card" id="authApp" v-cloak>
+        <div class="auth-card-inner">
+          <div class="auth-tabs">
+            <button class="auth-tab" :class="{active:tab==='login'}" @click="tab='login'">登录</button>
+            <button class="auth-tab" :class="{active:tab==='register'}" @click="tab='register'">注册</button>
+          </div>
+
+          <form class="auth-form" :class="{active:tab==='login'}" @submit.prevent="login">
+            <div class="form-group">
+              <label>用户名</label>
+              <input type="text" class="input" style="background:rgba(10,22,40,0.6);" v-model="loginForm.username" placeholder="请输入用户名" required />
+            </div>
+            <div class="form-group">
+              <label>密码</label>
+              <input type="password" class="input" style="background:rgba(10,22,40,0.6);" v-model="loginForm.password" placeholder="请输入密码" required />
+            </div>
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-shield-alt" style="margin-right:0.5rem;"></i>安全登录
+            </button>
+            <div class="alert-msg" v-if="loginMsg" :class="loginMsg.type==='success'?'alert-ok':'alert-err'">
+              <i :class="loginMsg.type==='success'?'fas fa-check-circle':'fas fa-exclamation-triangle'"></i>
+              {{ loginMsg.text }}
+            </div>
+          </form>
+
+          <form class="auth-form" :class="{active:tab==='register'}" @submit.prevent="register">
+            <div class="form-group">
+              <label>用户名</label>
+              <input type="text" class="input" style="background:rgba(10,22,40,0.6);" v-model="registerForm.username" placeholder="设置用户名" required />
+            </div>
+            <div class="form-group">
+              <label>邮箱（选填）</label>
+              <input type="email" class="input" style="background:rgba(10,22,40,0.6);" v-model="registerForm.email" placeholder="your@email.com" />
+            </div>
+            <div class="form-group">
+              <label>密码</label>
+              <input type="password" class="input" style="background:rgba(10,22,40,0.6);" v-model="registerForm.password" placeholder="设置密码" required />
+            </div>
+            <div class="form-group">
+              <label>角色</label>
+              <select class="input" style="background:rgba(10,22,40,0.6);" v-model="registerForm.role" required>
+                <option value="user">普通用户</option>
+                <option value="admin">管理者</option>
+              </select>
+            </div>
+            <div class="form-group" v-if="registerForm.role === 'admin'">
+              <label>管理者口令</label>
+              <input type="password" class="input" style="background:rgba(10,22,40,0.6);" v-model="registerForm.adminToken" placeholder="输入管理者口令" required />
+            </div>
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-user-plus" style="margin-right:0.5rem;"></i>注册账户
+            </button>
+            <div class="alert-msg" v-if="regMsg" :class="regMsg.type==='success'?'alert-ok':'alert-err'">
+              <i :class="regMsg.type==='success'?'fas fa-check-circle':'fas fa-exclamation-triangle'"></i>
+              {{ regMsg.text }}
+            </div>
+          </form>
+        </div>
+      </div>
+      {% endraw %}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+  /* ====== 撕裂动画控制 ====== */
+  (function() {
+    const curtain = document.getElementById('curtain');
+    const current = document.getElementById('electricCurrent');
+
+    // 阶段1：电光脉冲（0.3秒）
+    setTimeout(() => {
+      curtain.classList.add('glow-active');
+    }, 300);
+
+    // 阶段2：电流闪电划过（3.0秒）
+    setTimeout(() => {
+      current.classList.add('current-active');
+      // 电流到达中心后触发文字分离
+      setTimeout(() => {
+        curtain.classList.add('lightning-done');
+      }, 450);
+    }, 3000);
+
+    // 阶段3：幕布撕裂（4.5秒）
+    setTimeout(() => {
+      curtain.classList.add('torn');
+    }, 4500);
+
+    // 阶段4：完全移除遮罩（6秒后）
+    setTimeout(() => {
+      curtain.style.display = 'none';
+    }, 6000);
+  })();
+
+  /* ====== Three.js 星轨 ====== */
+  (function(){
+    const container = document.getElementById('three-canvas');
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x0A1628, 0.012);
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 22;
+    camera.position.y = 3;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+    renderer.domElement.style.display = 'block';
+    container.appendChild(renderer.domElement);
+
+    // 主环 — 更大更亮
+    const torusGeo = new THREE.TorusGeometry(9, 0.12, 8, 100);
+    const torusMat = new THREE.MeshBasicMaterial({
+      color: 0x3A6B82, wireframe: true,
+      transparent: true, opacity: 0.5
+    });
+    const torus = new THREE.Mesh(torusGeo, torusMat);
+    torus.rotation.x = Math.PI * 0.35;
+    scene.add(torus);
+
+    // 内环
+    const torus2 = new THREE.Mesh(
+      new THREE.TorusGeometry(6.5, 0.07, 6, 80),
+      new THREE.MeshBasicMaterial({ color: 0x4A7D96, wireframe: true, transparent: true, opacity: 0.35 })
+    );
+    torus2.rotation.x = Math.PI * 0.35;
+    torus2.rotation.z = Math.PI * 0.15;
+    scene.add(torus2);
+
+    // 外环 — 更大
+    const torus3 = new THREE.Mesh(
+      new THREE.TorusGeometry(13, 0.05, 6, 120),
+      new THREE.MeshBasicMaterial({ color: 0x2A5066, wireframe: true, transparent: true, opacity: 0.25 })
+    );
+    torus3.rotation.x = Math.PI * 0.35;
+    torus3.rotation.z = -Math.PI * 0.1;
+    scene.add(torus3);
+
+    // 额外内环4 — 新增
+    const torus4 = new THREE.Mesh(
+      new THREE.TorusGeometry(4, 0.04, 6, 60),
+      new THREE.MeshBasicMaterial({ color: 0x5A9EBA, wireframe: true, transparent: true, opacity: 0.2 })
+    );
+    torus4.rotation.x = Math.PI * 0.45;
+    torus4.rotation.z = Math.PI * 0.3;
+    scene.add(torus4);
+
+    // 竖直环5 — 新增，不同角度
+    const torus5 = new THREE.Mesh(
+      new THREE.TorusGeometry(10, 0.03, 6, 100),
+      new THREE.MeshBasicMaterial({ color: 0x6BABC4, wireframe: true, transparent: true, opacity: 0.15 })
+    );
+    torus5.rotation.x = Math.PI * 0.7;
+    torus5.rotation.y = Math.PI * 0.2;
+    scene.add(torus5);
+
+    // 粒子点阵 — 更多更亮
+    const particlesGeo = new THREE.BufferGeometry();
+    const particleCount = 600;
+    const posArray = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 45;
+    }
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const particlesMat = new THREE.PointsMaterial({
+      size: 0.12, color: 0x5A9EBA,
+      transparent: true, opacity: 0.6
+    });
+    const particles = new THREE.Points(particlesGeo, particlesMat);
+    scene.add(particles);
+
+    // 鼠标位置
+    const mouse = new THREE.Vector2();
+    document.addEventListener('mousemove', e => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    let time = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      time += 0.005;
+
+      torus.rotation.y  += 0.003;
+      torus2.rotation.y -= 0.002;
+      torus3.rotation.y += 0.0015;
+      torus4.rotation.y -= 0.004;
+      torus5.rotation.y += 0.002;
+      torus5.rotation.x += 0.001;
+
+      // 鼠标排斥
+      const repelX = mouse.x * 0.3;
+      const repelY = mouse.y * 0.2;
+      torus.rotation.x += (Math.PI * 0.35 + repelY * 0.1 - torus.rotation.x) * 0.02;
+      torus.rotation.z += (repelX * 0.1 - torus.rotation.z) * 0.02;
+
+      particles.rotation.y = time * 0.1;
+      particles.rotation.x = Math.sin(time * 0.5) * 0.05;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  })();
+
+  /* ====== 鼠标拖尾 ====== */
+  (function(){
+    const canvas = document.getElementById('meteor-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
+
+    const mouse = { x: W/2, y: H/2, active: false };
+    let lastX = W/2, lastY = H/2;
+    document.addEventListener('mousemove', e => {
+      mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
+      lastX = e.clientX; lastY = e.clientY;
+    });
+    document.addEventListener('mouseleave', () => { mouse.active = false; });
+
+    const trailParticles = [];
+    for (let i = 0; i < 12; i++) {
+      trailParticles.push({ x: W/2, y: H/2, vx: 0, vy: 0 });
+    }
+    const mainTrail = [];
+
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+      const now = Date.now();
+      if (mouse.active) mainTrail.push({ x: mouse.x, y: mouse.y, time: now });
+      while (mainTrail.length > 0 && now - mainTrail[0].time > 600) mainTrail.shift();
+      if (mainTrail.length > 20) mainTrail.splice(0, mainTrail.length - 20);
+
+      trailParticles.forEach((p, i) => {
+        const delay = (i + 1) * 3;
+        const trailIdx = Math.max(0, mainTrail.length - 1 - delay);
+        const target = mainTrail[trailIdx] || { x: mouse.x, y: mouse.y };
+        const ease = 0.06 + i * 0.015;
+        p.vx += (target.x - p.x) * ease;
+        p.vy += (target.y - p.y) * ease;
+        p.vx *= 0.88; p.vy *= 0.88;
+        p.x += p.vx; p.y += p.vy;
+      });
+
+      if (mainTrail.length > 1) {
+        for (let i = 0; i < mainTrail.length - 1; i++) {
+          const age = i / mainTrail.length;
+          ctx.beginPath();
+          ctx.moveTo(mainTrail[i].x, mainTrail[i].y);
+          ctx.lineTo(mainTrail[i+1].x, mainTrail[i+1].y);
+          ctx.strokeStyle = `rgba(90,158,186,${age * 0.5})`;
+          ctx.lineWidth = age * 3;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+      }
+
+      trailParticles.forEach((p, i) => {
+        const dist = 12 - i;
+        const size = Math.max(1, 5 - dist * 0.3);
+        const alpha = Math.max(0.15, 0.7 - dist * 0.05);
+        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, size * 3);
+        glow.addColorStop(0, `rgba(90,158,186,${alpha * 0.3})`);
+        glow.addColorStop(1, 'rgba(90,158,186,0)');
+        ctx.beginPath(); ctx.arc(p.x, p.y, size * 3, 0, Math.PI*2);
+        ctx.fillStyle = glow; ctx.fill();
+        ctx.beginPath(); ctx.arc(p.x, p.y, size, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(168,196,216,${alpha})`;
+        ctx.shadowBlur = 10; ctx.shadowColor = '#5A9EBA';
+        ctx.fill(); ctx.shadowBlur = 0;
+      });
+
+      if (mainTrail.length > 0) {
+        const head = mainTrail[mainTrail.length - 1];
+        const outer = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 28);
+        outer.addColorStop(0, 'rgba(90,158,186,0.25)');
+        outer.addColorStop(0.5, 'rgba(90,158,186,0.05)');
+        outer.addColorStop(1, 'rgba(90,158,186,0)');
+        ctx.beginPath(); ctx.arc(head.x, head.y, 28, 0, Math.PI*2);
+        ctx.fillStyle = outer; ctx.fill();
+        const inner = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 10);
+        inner.addColorStop(0, 'rgba(255,255,255,0.9)');
+        inner.addColorStop(0.5, 'rgba(168,196,216,0.6)');
+        inner.addColorStop(1, 'rgba(90,158,186,0)');
+        ctx.beginPath(); ctx.arc(head.x, head.y, 10, 0, Math.PI*2);
+        ctx.fillStyle = inner; ctx.fill();
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  })();
+
+  /* ====== 3D卡片光斑 ====== */
+  document.querySelectorAll('.auth-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width) * 100 + '%');
+      card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height) * 100 + '%');
+    });
+  });
+
+  /* ====== Vue ====== */
+  new Vue({
+    el: '#authApp',
+    data: {
+      tab: 'login',
+      loginForm: { username: '', password: '' },
+      registerForm: { username: '', email: '', password: '', role: 'user', adminToken: '' },
+      loginMsg: null, regMsg: null
+    },
+    methods: {
+      async login() {
+        try {
+          const res = await fetch('/api/auth/login', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.loginForm)
+          });
+          const data = await res.json();
+          if (data.status === 'success') {
+            this.loginMsg = { type: 'success', text: '登录成功，正在进入系统...' };
+            setTimeout(() => { window.location.href = data.redirect; }, 1000);
+          } else {
+            this.loginMsg = { type: 'danger', text: data.error || '登录失败' };
+          }
+        } catch (e) { this.loginMsg = { type: 'danger', text: '网络连接异常' }; }
+      },
+      async register() {
+        if (this.registerForm.role === 'admin' && !this.registerForm.adminToken) {
+          this.regMsg = { type: 'danger', text: '请输入管理者口令' }; return;
+        }
+        try {
+          const res = await fetch('/api/auth/register', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.registerForm)
+          });
+          const data = await res.json();
+          if (data.status === 'success') {
+            this.regMsg = { type: 'success', text: '注册成功，请登录' };
+            this.tab = 'login';
+            this.registerForm = { username: '', email: '', password: '', role: 'user', adminToken: '' };
+          } else {
+            this.regMsg = { type: 'danger', text: data.error || '注册失败' };
+          }
+        } catch (e) { this.regMsg = { type: 'danger', text: '网络连接异常' }; }
+      }
+    }
+  });
+  </script>
+</body>
+</html>
